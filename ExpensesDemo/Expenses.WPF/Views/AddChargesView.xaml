@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Expenses.WPF.Views.AddChargesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:misc="clr-namespace:Expenses.WPF.Misc"
+             xmlns:conv="clr-namespace:Expenses.WPF.Converters"
+             xmlns:vm="clr-namespace:Expenses.WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance vm:EditExpenseReportViewModel}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <conv:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </UserControl.Resources>
+
+    <Grid Background="White" x:Name="root">
+        <DataGrid ItemsSource="{Binding AddCharges.Charges}" AutoGenerateColumns="False" CanUserAddRows="False"
+                  misc:SelectedItemsBehavior.SelectedItemsChangedHandler="{Binding Path=ChargesSelectionChangedCommand}" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="View">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Add" Command="{Binding ElementName=root, Path=DataContext.AddChargeToReportCommand}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Date" IsReadOnly="True" Binding="{Binding ExpenseDate, StringFormat=d}" />
+                <DataGridTextColumn Header="Description" IsReadOnly="True" Binding="{Binding Description}" />
+                <DataGridTextColumn Header="Amount" IsReadOnly="True" Binding="{Binding BilledAmount, StringFormat=C}" />
+                <DataGridTextColumn Header="CC Charge" IsReadOnly="True" Binding="{Binding TransactionAmount, StringFormat=C}" />
+                <DataGridTextColumn Header="Merchant" IsReadOnly="True" Binding="{Binding Merchant}" />
+                <DataGridTextColumn Header="Location" IsReadOnly="True" Binding="{Binding Location}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:58299/ExpenseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" />
+  <xs:element name="GetEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="employeeAlias" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEmployeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="GetEmployeeResult" nillable="true" type="q1:Employee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCharge">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="chargeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChargeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="GetChargeResult" nillable="true" type="q2:Charge" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpenseReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="expenseReportId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpenseReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="GetExpenseReportResult" nillable="true" type="q3:ExpenseReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOutstandingChargesForEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="employeeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOutstandingChargesForEmployeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="GetOutstandingChargesForEmployeeResult" nillable="true" type="q4:ArrayOfCharge" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChargesForExpenseReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="expenseReportId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetChargesForExpenseReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="GetChargesForExpenseReportResult" nillable="true" type="q5:ArrayOfCharge" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpenseReportsForEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="employeeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpenseReportsForEmployeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="GetExpenseReportsForEmployeeResult" nillable="true" type="q6:ArrayOfExpenseReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpenseReportsForEmployeeByStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="employeeId" type="xs:int" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="status" type="q7:ExpenseReportStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetExpenseReportsForEmployeeByStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="GetExpenseReportsForEmployeeByStatusResult" nillable="true" type="q8:ArrayOfExpenseReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewCharge">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="charge" nillable="true" type="q9:Charge" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewChargeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateNewChargeResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewExpenseReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="expenseReport" nillable="true" type="q10:ExpenseReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNewExpenseReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateNewExpenseReportResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateCharge">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="charge" nillable="true" type="q11:Charge" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateChargeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateChargeResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateExpenseReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" minOccurs="0" name="expenseReport" nillable="true" type="q12:ExpenseReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateExpenseReportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateExpenseReportResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteExpenseReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="expenseReportId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteExpenseReportResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetData">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetDataResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

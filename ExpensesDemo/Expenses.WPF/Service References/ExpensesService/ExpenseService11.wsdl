@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ExpenseService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:58299/ExpenseService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:58299/ExpenseService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:58299/ExpenseService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IExpenseService_GetEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetCharge_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCharge" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetCharge_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetExpenseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExpenseReport" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetExpenseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExpenseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetOutstandingChargesForEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutstandingChargesForEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetOutstandingChargesForEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutstandingChargesForEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetChargesForExpenseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChargesForExpenseReport" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetChargesForExpenseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChargesForExpenseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetExpenseReportsForEmployee_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExpenseReportsForEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetExpenseReportsForEmployee_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExpenseReportsForEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetExpenseReportsForEmployeeByStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExpenseReportsForEmployeeByStatus" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_GetExpenseReportsForEmployeeByStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExpenseReportsForEmployeeByStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_CreateNewCharge_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewCharge" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_CreateNewCharge_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewChargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_CreateNewExpenseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewExpenseReport" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_CreateNewExpenseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewExpenseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_UpdateCharge_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCharge" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_UpdateCharge_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateChargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_UpdateExpenseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateExpenseReport" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_UpdateExpenseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateExpenseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_DeleteExpenseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteExpenseReport" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_DeleteExpenseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteExpenseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_ResetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetData" />
+  </wsdl:message>
+  <wsdl:message name="IExpenseService_ResetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IExpenseService">
+    <wsdl:operation name="GetEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/GetEmployee" message="tns:IExpenseService_GetEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/GetEmployeeResponse" message="tns:IExpenseService_GetEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCharge">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/GetCharge" message="tns:IExpenseService_GetCharge_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/GetChargeResponse" message="tns:IExpenseService_GetCharge_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpenseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/GetExpenseReport" message="tns:IExpenseService_GetExpenseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/GetExpenseReportResponse" message="tns:IExpenseService_GetExpenseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutstandingChargesForEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/GetOutstandingChargesForEmployee" message="tns:IExpenseService_GetOutstandingChargesForEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/GetOutstandingChargesForEmployeeResponse" message="tns:IExpenseService_GetOutstandingChargesForEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChargesForExpenseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/GetChargesForExpenseReport" message="tns:IExpenseService_GetChargesForExpenseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/GetChargesForExpenseReportResponse" message="tns:IExpenseService_GetChargesForExpenseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpenseReportsForEmployee">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/GetExpenseReportsForEmployee" message="tns:IExpenseService_GetExpenseReportsForEmployee_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/GetExpenseReportsForEmployeeResponse" message="tns:IExpenseService_GetExpenseReportsForEmployee_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpenseReportsForEmployeeByStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/GetExpenseReportsForEmployeeByStatus" message="tns:IExpenseService_GetExpenseReportsForEmployeeByStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/GetExpenseReportsForEmployeeByStatusResponse" message="tns:IExpenseService_GetExpenseReportsForEmployeeByStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCharge">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/CreateNewCharge" message="tns:IExpenseService_CreateNewCharge_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/CreateNewChargeResponse" message="tns:IExpenseService_CreateNewCharge_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewExpenseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/CreateNewExpenseReport" message="tns:IExpenseService_CreateNewExpenseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/CreateNewExpenseReportResponse" message="tns:IExpenseService_CreateNewExpenseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCharge">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/UpdateCharge" message="tns:IExpenseService_UpdateCharge_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/UpdateChargeResponse" message="tns:IExpenseService_UpdateCharge_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExpenseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/UpdateExpenseReport" message="tns:IExpenseService_UpdateExpenseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/UpdateExpenseReportResponse" message="tns:IExpenseService_UpdateExpenseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExpenseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/DeleteExpenseReport" message="tns:IExpenseService_DeleteExpenseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/DeleteExpenseReportResponse" message="tns:IExpenseService_DeleteExpenseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IExpenseService/ResetData" message="tns:IExpenseService_ResetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IExpenseService/ResetDataResponse" message="tns:IExpenseService_ResetData_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IExpenseService" type="tns:IExpenseService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEmployee">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/GetEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCharge">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/GetCharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpenseReport">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/GetExpenseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutstandingChargesForEmployee">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/GetOutstandingChargesForEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChargesForExpenseReport">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/GetChargesForExpenseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpenseReportsForEmployee">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/GetExpenseReportsForEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpenseReportsForEmployeeByStatus">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/GetExpenseReportsForEmployeeByStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewCharge">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/CreateNewCharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewExpenseReport">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/CreateNewExpenseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCharge">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/UpdateCharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExpenseReport">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/UpdateExpenseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExpenseReport">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/DeleteExpenseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetData">
+      <soap:operation soapAction="http://tempuri.org/IExpenseService/ResetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExpenseService">
+    <wsdl:port name="BasicHttpBinding_IExpenseService" binding="tns:BasicHttpBinding_IExpenseService">
+      <soap:address location="http://localhost:58299/ExpenseService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

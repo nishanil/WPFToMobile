@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="Expenses.WPF.Views.ExpenseReportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Expenses.WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="480" 
+             d:DesignWidth="640"
+             d:DataContext="{d:DesignInstance vm:EditExpenseReportViewModel}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Background="White" x:Name="root" DataContext="{Binding ExpenseReport}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid Background="White">
+                <Grid>
+                    <Grid.Resources>
+                        <DataTemplate DataType="{x:Type ValidationError}">
+                            <TextBlock FontStyle="Italic" Foreground="Red" HorizontalAlignment="Right" Margin="0,1" Text="{Binding Path=ErrorContent}" />
+                        </DataTemplate>
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="6" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" 
+                        Content="Employee:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_employeeTextBlock}" 
+                        Padding="0"
+                        />
+                    <TextBlock x:Name="_employeeTextBlock" Grid.Row="0" Grid.Column="2"
+                        Text="{Binding EmployeeId}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+
+                    <Label Grid.Row="2" Grid.Column="0"
+                        Content="Status:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_expenseReportStatusTextBlock}" 
+                        Padding="0"
+                           />
+                    <TextBlock x:Name="_expenseReportStatusTextBlock" Grid.Row="2" Grid.Column="2"
+                        Text="{Binding Status}"
+                        Validation.ErrorTemplate="{x:Null}"
+                            />
+
+                    <Label Grid.Row="4" Grid.Column="0" 
+                        Content="Amount:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_amountTextBlock}" 
+                        Padding="0"       
+                           />
+                    <TextBlock x:Name="_amountTextBlock" Grid.Row="4" Grid.Column="2"
+                        Text="{Binding Amount, StringFormat='C'}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+
+                    <Label Grid.Row="6" Grid.Column="0" 
+                        Content="Owed to Emp.:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_amountTextBlock}" 
+                        Padding="0"
+                        />
+                    <TextBlock x:Name="_owedEmpTextBlock" Grid.Row="6" Grid.Column="2"
+                        Text="{Binding OwedToEmployee, StringFormat='C'}"
+                        Validation.ErrorTemplate="{x:Null}"
+                     />
+
+                    <Label Grid.Row="8" Grid.Column="0" 
+                        Content="Owed to CC:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_owedCCTextBlock}" 
+                        Padding="0"
+                           />
+                    <TextBlock x:Name="_owedCCTextBlock" Grid.Row="8" Grid.Column="2"
+                        Text="{Binding OwedToCreditCard, StringFormat='C'}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+
+                    <Label Grid.Row="10" Grid.Column="0" 
+                        Content="Approver:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=__approverTextBlock}" 
+                        Padding="0"
+                           />
+                    <TextBlock x:Name="_approverTextBlock" Grid.Row="10" Grid.Column="2"
+                        Text="{Binding Approver}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+
+                    <Label Grid.Row="12" Grid.Column="0" 
+                        Content="Cost Center:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_costCenterTextBlock}" 
+                        Padding="0"
+                           />
+                    <TextBlock x:Name="costCenterTextBlock" Grid.Row="12" Grid.Column="2"
+                        Text="{Binding CostCenter}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+
+                    <Label Grid.Row="14" Grid.Column="0" 
+                        Content="Notes:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_notesTextBox}" 
+                        Padding="0"
+                           />
+                    <TextBox x:Name="_notesCenterTextBox" Grid.Row="14" Grid.Column="2"
+                        Text="{Binding Notes, ValidatesOnDataErrors=True}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+                    <ContentPresenter Grid.Row="15" Grid.Column="2"
+                        Content="{Binding ElementName=_notesCenterTextBox, Path=(Validation.Errors).CurrentItem}"
+                    />
+
+                    <Label Grid.Row="16" Grid.Column="0" 
+                        Content="Date submitted:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_dateSubmittedTextBlock}" 
+                        Padding="0"
+                           />
+                    <TextBlock x:Name="dateSubmittedTextBlock" Grid.Row="16" Grid.Column="2"
+                        Text="{Binding DateSubmitted, StringFormat='d'}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+
+                    <Label Grid.Row="18" Grid.Column="0" 
+                        Content="Date resolved:" 
+                        HorizontalAlignment="Right"
+                        Target="{Binding ElementName=_dateResolvedTextBlock}" 
+                        Padding="0"
+                           />
+                    <TextBlock x:Name="dateResolvedTextBlock" Grid.Row="18" Grid.Column="2"
+                        Text="{Binding DateResolved, StringFormat='d'}"
+                        Validation.ErrorTemplate="{x:Null}"
+                        />
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</UserControl>

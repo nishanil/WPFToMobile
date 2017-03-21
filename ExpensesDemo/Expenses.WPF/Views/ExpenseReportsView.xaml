@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Expenses.WPF.Views.ExpenseReportsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Expenses.WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" 
+             d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance vm:ExpenseReportsViewModel}">
+    <Grid Background="White" x:Name="root">
+        <DataGrid ItemsSource="{Binding ExpenseReports}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="View">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="View" Command="{Binding ElementName=root, Path=DataContext.ViewReportCommand}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="DisplayDate" IsReadOnly="True" Binding="{Binding DisplayDate, StringFormat=d}" />
+                <DataGridTextColumn Header="Notes" IsReadOnly="True" Binding="{Binding Notes}" />
+                <DataGridTextColumn Header="Amount" IsReadOnly="True" Binding="{Binding Amount, StringFormat=C}" />
+                <DataGridTextColumn Header="Approver" IsReadOnly="True" Binding="{Binding Approver}" />
+                <DataGridTextColumn Header="Status" IsReadOnly="True" Binding="{Binding Status}" />
+                <!--<DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Command="{Binding DeleteReportCommand}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

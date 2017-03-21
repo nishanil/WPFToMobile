@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Expenses.Data.CommunicationModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Employee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Manager" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Employee" nillable="true" type="tns:Employee" />
+  <xs:complexType name="Charge">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BilledAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ChargeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeId" type="xs:int" />
+      <xs:element minOccurs="0" name="ExpenseDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpenseReportId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Merchant" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionAmount" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Charge" nillable="true" type="tns:Charge" />
+  <xs:complexType name="ExpenseReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Approver" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CostCenter" type="xs:int" />
+      <xs:element minOccurs="0" name="DateResolved" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateSubmitted" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EmployeeId" type="xs:int" />
+      <xs:element minOccurs="0" name="ExpenseReportId" type="xs:int" />
+      <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="tns:ExpenseReportStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExpenseReport" nillable="true" type="tns:ExpenseReport" />
+  <xs:simpleType name="ExpenseReportStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Submitted" />
+      <xs:enumeration value="Saved" />
+      <xs:enumeration value="Approved" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ExpenseReportStatus" nillable="true" type="tns:ExpenseReportStatus" />
+  <xs:complexType name="ArrayOfCharge">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Charge" nillable="true" type="tns:Charge" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCharge" nillable="true" type="tns:ArrayOfCharge" />
+  <xs:complexType name="ArrayOfExpenseReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExpenseReport" nillable="true" type="tns:ExpenseReport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExpenseReport" nillable="true" type="tns:ArrayOfExpenseReport" />
+</xs:schema>
