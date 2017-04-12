@@ -7,11 +7,11 @@ using Xamarin.Forms;
 
 namespace MyExpenses.Views
 {
-	public partial class ItemsPage : ContentPage
+	public partial class ReportsPage : ContentPage
 	{
 		ItemsViewModel viewModel;
 
-		public ItemsPage()
+		public ReportsPage()
 		{
 			InitializeComponent();
 
@@ -24,7 +24,7 @@ namespace MyExpenses.Views
 			if (item == null)
 				return;
 
-			await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+			await Navigation.PushAsync(new ReportsDetailPage());
 
 			// Manually deselect item
 			ItemsListView.SelectedItem = null;
@@ -32,7 +32,7 @@ namespace MyExpenses.Views
 
 		async void AddItem_Clicked(object sender, EventArgs e)
 		{
-			await Navigation.PushAsync(new NewItemPage());
+			await Navigation.PushAsync(new ReportsDetailPage());
 		}
 
 		protected override void OnAppearing()

@@ -50,17 +50,27 @@ namespace MyExpenses
 			{
 				Children =
 				{
-					new NavigationPage(new ItemsPage())
+                    new NavigationPage(new ExpensesPage())
+                    {
+                        Title = "Expenses",
+                        Icon = Device.OnPlatform("CreditCard.png",null,null)
+                    },
+                    new NavigationPage(new ReportsPage())
 					{
-						Title = "Browse",
-						Icon = Device.OnPlatform("tab_feed.png",null,null)
+						Title = "Reports",
+						Icon = Device.OnPlatform("Chart.png",null,null)
 					},
 					new NavigationPage(new AboutPage())
 					{
-						Title = "About",
-						Icon = Device.OnPlatform("tab_about.png",null,null)
+						Title = "Settings",
+						Icon = Device.OnPlatform("Settings.png",null,null)
 					},
-				}
+                    new NavigationPage(new AboutPage())
+                    {
+                        Title = "Profile",
+                        Icon = Device.OnPlatform("Person.png",null,null)
+                    },
+                }
 			};
         }
 	}

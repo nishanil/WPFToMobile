@@ -6,11 +6,11 @@ using Xamarin.Forms;
 
 namespace MyExpenses.Views
 {
-	public partial class NewItemPage : ContentPage
+	public partial class ExpenseDetailPage : ContentPage
 	{
 		public Item Item { get; set; }
 
-		public NewItemPage()
+		public ExpenseDetailPage()
 		{
 			InitializeComponent();
 

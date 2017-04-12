@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyExpenses.Views.ReportsDetailPage"
+             Title="Detail">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" />
+        <ToolbarItem Text="Submit" />
+    </ContentPage.ToolbarItems>
+    
+    <ListView ItemsSource="{Binding ItemsGrouped}"
+            ItemTapped="Handle_ItemTapped"
+            ItemSelected="Handle_ItemSelected"
+            HasUnevenRows="true"
+            IsGroupingEnabled="true"
+            GroupDisplayBinding="{Binding Key}"
+            IsPullToRefreshEnabled="true"
+            CachingStrategy="RecycleElement"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            RefreshCommand="{Binding RefreshDataCommand}">
+    <ListView.Header>
+            <Grid ColumnSpacing="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+                <StackLayout Padding="10">
+                    <Label Text="Employee Id" FontSize="Micro"  
+                          />
+                    <Label Text="17890"
+                       FontSize="Medium"/>
+                    
+                    <Label Text="Report Id: 3"
+                       FontSize="Medium"/>
+                    <Label Text="Notes" FontSize="Micro"  
+                          />
+                    <Label Text="Paid for Mobile bill"
+                       FontSize="Medium"/>
+                    <Label Text="Status" FontSize="Micro"  
+                          />
+                    <Label Text="Saved"
+                       TextColor="#f06292"
+                       FontSize="Medium"/>
+                    <Label Text="Cost Center" FontSize="Micro"  
+                          />
+                    <Label Text="1608"
+                       FontSize="Medium"/>
+                </StackLayout>
+                <StackLayout 
+                    Grid.Column="1"
+                         HorizontalOptions="EndAndExpand" Padding="10">
+                    <Label Text="Approver" FontSize="Micro"  
+                          />
+                    <Label Text="Nish Anil"
+                       FontSize="Medium"/>
+                    
+                    <Label Text="Submitted Date" FontSize="Micro"  
+                          />
+                    <Label Text="23 MAR"
+                       FontSize="Medium"/>
+
+                    <Label Text="Owed to Emp" FontSize="Micro"   />
+                    <Label Text="$250"
+                      TextColor="#f06292"
+                      FontSize="Medium"
+                      />
+                    <Label Text="Amount owed to CC" FontSize="Micro"/>
+                    <Label Text="$250"
+                      TextColor="#f06292"
+                      FontSize="Medium"
+                     />
+                    <Label Text="Total AMount" FontSize="Micro"/>
+                    <Label Text="$500"
+                      TextColor="#81c784"
+                      FontSize="Large"
+                      FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Padding="20" Grid.Row="1" Grid.ColumnSpan="2" >
+                    
+                <Button TextColor="White" BackgroundColor="#f06292"
+                        Text="Add Expenses" Clicked="Button_Clicked"/>
+
+                </StackLayout>
+            </Grid>
+
+    </ListView.Header>
+    <!--Built in Cells-->
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <TextCell Text="{Binding Text}"
+                  Detail="{Binding Detail}"/>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    
+    <!--Custom View Cells-->
+    <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->
+    <ListView.Footer>
+      <StackLayout Padding="10"
+                   Orientation="Horizontal">
+                <Button TextColor="White" 
+                        BackgroundColor="#f06292"
+                        Text="Submit Report"/>
+            </StackLayout>
+    </ListView.Footer>
+  </ListView>
+</ContentPage>

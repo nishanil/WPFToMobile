@@ -17,11 +17,11 @@ namespace MyExpenses.ViewModels
 
 		public ItemsViewModel()
 		{
-			Title = "Browse";
+			Title = "My Expenses";
 			Items = new ObservableRangeCollection<Item>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-			MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+			MessagingCenter.Subscribe<ExpenseDetailPage, Item>(this, "AddItem", async (obj, item) =>
 			{
 				var _item = item as Item;
 				Items.Add(_item);

@@ -5,17 +5,17 @@ using Xamarin.Forms;
 
 namespace MyExpenses.Views
 {
-	public partial class ItemDetailPage : ContentPage
+	public partial class ReportDetailPage : ContentPage
 	{
 		ItemDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-        public ItemDetailPage()
+        public ReportDetailPage()
         {
             InitializeComponent();
         }
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public ReportDetailPage(ItemDetailViewModel viewModel)
 		{
 			InitializeComponent();
 
