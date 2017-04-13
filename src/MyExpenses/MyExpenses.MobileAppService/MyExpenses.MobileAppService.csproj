@@ -129,6 +129,7 @@
       <HintPath>..\..\packages\Swashbuckle.Core.5.5.3\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.30826.1200, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IdentityModel.Tokens.Jwt.4.0.3.308261200\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
@@ -180,9 +181,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.MobileApp.cs" />
+    <Compile Include="Controllers\ChargeController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ExpenseReportController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="DataObjects\Charge.cs" />
+    <Compile Include="DataObjects\Employee.cs" />
+    <Compile Include="DataObjects\ExpenseReport.cs" />
     <Compile Include="DataObjects\Item.cs" />
-    <Compile Include="Models\MasterDetailContext.cs" />
+    <Compile Include="ExpensesDemoData.cs" />
+    <Compile Include="Models\MyExpenseContext.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -200,12 +208,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\MyExpenses-SI - Web Deploy.pubxml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Expenses.Data\Expenses.Data.csproj">
-      <Project>{b795f788-8fd1-4985-bb20-833b94c7ace2}</Project>
-      <Name>Expenses.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

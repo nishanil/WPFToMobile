@@ -75,7 +75,9 @@ namespace MyExpenses.Views
             ListView mainList = new ListView()
             {
                 ItemsSource = WrappedItems,
-                ItemTemplate = new DataTemplate(typeof(WrappedItemSelectionTemplate)),
+                //ItemTemplate = new DataTemplate(typeof(WrappedItemSelectionTemplate)),
+                ItemTemplate = (DataTemplate)Application.Current.Resources["MultiSelectTemplate"] 
+
             };
 
             mainList.ItemSelected += (sender, e) => {

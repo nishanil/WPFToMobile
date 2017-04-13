@@ -1,15 +1,19 @@
-﻿using System;
+﻿using MyExpenses.MobileAppService.DataObjects;
+using MyExpenses.MobileAppService.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using static MyExpenses.MobileAppService.DataObjects.ExpenseReport;
 
-namespace Expenses.Data
+namespace MyExpenses.MobileAppService
 {
-    public static class ExpensesDemoData
+    public class ExpensesDemoData
     {
-        public const string DefaultEmployeeAlias = "kimakers";
+        public const string DefaultEmployeeAlias = "nanil";
 
-        public static DbEmployee CreateNewDemoEmployee(string alias)
+        public static Employee CreateNewDemoEmployee(string alias, MyExpenseContext context)
         {
-            var repository = new ExpensesRepository();
             string managerAlias = "manager";
 
             if (string.Compare(alias, "rogreen", true) != 0)
@@ -17,197 +21,246 @@ namespace Expenses.Data
                 managerAlias = "rogreen";
             }
 
-            DbEmployee employee =
-                new DbEmployee()
+            var employee =
+                new Employee()
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Alias = alias,
                     Manager = managerAlias,
                     Name = "New Employee"
                 };
 
-            employee = repository.SaveEmployee(employee);
+            context.Set<Employee>().Add(employee);
+            context.SaveChanges();
 
-            List<DbCharge> charges = new List<DbCharge>();
+            List<Charge> charges = new List<Charge>();
 
-            repository.SaveCharge(new DbCharge()
+            context.Set<Charge>().Add(new Charge()
             {
-                EmployeeId = employee.EmployeeId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
                 BilledAmount = 200M,
                 Description = "REF# 27438948",
                 ExpenseDate = DateTime.Today.AddDays(-45),
                 Location = "San Francisco, CA",
                 Merchant = "Northwind Inn",
                 Notes = string.Empty,
+                ChargeCategory = Charge.Category.Hotel,
                 TransactionAmount = 200M
             });
 
-            repository.SaveCharge(new DbCharge()
+            context.Set<Charge>().Add(new Charge()
             {
-                EmployeeId = employee.EmployeeId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
                 BilledAmount = 40,
                 Description = "REF# 77384751",
                 ExpenseDate = DateTime.Today.AddDays(-20),
                 Location = "Seattle, WA",
                 Merchant = "Contoso Taxi",
                 Notes = string.Empty,
+                ChargeCategory = Charge.Category.Taxi,
                 TransactionAmount = 40
             });
 
-            repository.SaveCharge(new DbCharge()
+            context.Set<Charge>().Add(new Charge()
             {
-                EmployeeId = employee.EmployeeId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
                 BilledAmount = 67,
                 Description = "REF# 33748563",
                 ExpenseDate = DateTime.Today.AddDays(-8),
                 Location = "Seattle, WA",
                 Merchant = "Fourth Coffee",
+                ChargeCategory = Charge.Category.Meal,
                 Notes = string.Empty,
                 TransactionAmount = 12
             });
 
-            repository.SaveCharge(new DbCharge()
+            context.Set<Charge>().Add(new Charge()
             {
-                EmployeeId = employee.EmployeeId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
                 BilledAmount = 17,
                 Description = "REF# 33748876",
                 ExpenseDate = DateTime.Today.AddDays(-4),
                 Location = "Seattle, WA",
                 Merchant = "Fourth Coffee",
+                ChargeCategory = Charge.Category.Meal,
                 Notes = string.Empty,
                 TransactionAmount = 15
             });
 
+            context.SaveChanges();
 
-            repository.SaveExpenseReport(new DbExpenseReport()
+            context.Set<ExpenseReport>().Add(new ExpenseReport()
             {
-                EmployeeId = employee.EmployeeId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
                 Amount = 640M,
                 Approver = managerAlias,
                 CostCenter = 50992,
                 DateSubmitted = DateTime.Today.AddDays(-7),
                 Notes = (managerAlias == "rogreen") ? "Kim Akers" : "Visit to Blue Yonder Airlines",
-                Status = DbExpenseReportStatus.Saved
+                Status = ExpenseReportStatus.Saved
             });
 
-            DbExpenseReport report = new DbExpenseReport()
+            ExpenseReport report = new ExpenseReport()
             {
-                EmployeeId = employee.EmployeeId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
                 Amount = 450M,
                 Approver = managerAlias,
                 CostCenter = 50992,
                 DateSubmitted = DateTime.Today.AddDays(-7),
                 Notes = (managerAlias == "rogreen") ? "Kim Akers" : "Visit to Tailspin Toys",
-                Status = DbExpenseReportStatus.Saved
+                Status = ExpenseReportStatus.Saved
             };
-            report = repository.SaveExpenseReport(report);
+            context.Set<ExpenseReport>().Add(report);
 
-            repository.SaveCharge(new DbCharge()
+            context.SaveChanges();
+
+            context.Set<Charge>().Add(new Charge()
             {
-                EmployeeId = employee.EmployeeId,
-                ExpenseReportId = report.ExpenseReportId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
+                ExpenseReportId = report.Id,
                 BilledAmount = 350M,
                 Description = "Airfare to San Francisco",
                 ExpenseDate = DateTime.Today.AddDays(-60),
                 Location = "Chicago, IL",
                 Merchant = "Blue Yonder Airlines",
+                ChargeCategory = Charge.Category.Flight,
                 Notes = string.Empty,
                 TransactionAmount = 350M
             });
 
-            repository.SaveCharge(new DbCharge()
+            context.Set<Charge>().Add(new Charge()
             {
-                EmployeeId = employee.EmployeeId,
-                ExpenseReportId = report.ExpenseReportId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
+                ExpenseReportId = report.Id,
                 BilledAmount = 50,
                 Description = "Cab from airport",
                 ExpenseDate = DateTime.Today.AddDays(-45),
                 Location = "San Francisco, CA",
                 Merchant = "Contoso Taxi",
+                ChargeCategory = Charge.Category.Taxi,
                 Notes = string.Empty,
                 TransactionAmount = 50
             });
 
-            repository.SaveCharge(new DbCharge()
+            context.Set<Charge>().Add(new Charge()
             {
-                EmployeeId = employee.EmployeeId,
-                ExpenseReportId = report.ExpenseReportId,
+                Id = Guid.NewGuid().ToString(),
+
+                EmployeeId = employee.Id,
+                ExpenseReportId = report.Id,
                 BilledAmount = 50,
                 Description = "Cab to airport",
                 ExpenseDate = DateTime.Today.AddDays(-45),
                 Location = "San Francisco, CA",
                 Merchant = "Contoso Taxi",
+                ChargeCategory = Charge.Category.Taxi,
                 Notes = string.Empty,
                 TransactionAmount = 50
             });
+
+            context.SaveChanges();
 
             // Add a year of every other month customer visits
             int x = -75;
             for (int i = 1; i <= 6; i++)
             {
-                report = new DbExpenseReport()
+                report = new ExpenseReport()
                 {
-                    EmployeeId = employee.EmployeeId,
+                    Id = Guid.NewGuid().ToString(),
+
+                    EmployeeId = employee.Id,
                     Amount = 850M,
                     Approver = managerAlias,
                     CostCenter = 50992,
                     DateSubmitted = DateTime.Today.AddDays(x - 5),
                     DateResolved = DateTime.Today.AddDays(x),
                     Notes = "Visit to Tailspin Toys",
-                    Status = DbExpenseReportStatus.Approved,
+                    Status = ExpenseReportStatus.Approved,
                 };
-                repository.SaveExpenseReport(report);
+                context.Set<ExpenseReport>().Add(report);
 
-                repository.SaveCharge(new DbCharge()
+                context.SaveChanges();
+
+                context.Set<Charge>().Add(new Charge()
                 {
-                    EmployeeId = employee.EmployeeId,
-                    ExpenseReportId = report.ExpenseReportId,
+                    Id = Guid.NewGuid().ToString(),
+
+                    EmployeeId = employee.Id,
+                    ExpenseReportId = report.Id,
                     BilledAmount = 350M,
                     Description = "Airfare to Chicago",
                     ExpenseDate = DateTime.Today.AddDays(x - 15),
                     Location = "Chicago, IL",
                     Merchant = "Blue Yonder Airlines",
+                    ChargeCategory = Charge.Category.Flight,
                     Notes = string.Empty,
                     TransactionAmount = 350M
                 });
 
-                repository.SaveCharge(new DbCharge()
+                context.Set<Charge>().Add(new Charge()
                 {
-                    EmployeeId = employee.EmployeeId,
-                    ExpenseReportId = report.ExpenseReportId,
+                    Id = Guid.NewGuid().ToString(),
+
+                    EmployeeId = employee.Id,
+                    ExpenseReportId = report.Id,
                     BilledAmount = 50M,
                     Description = "Cab from airport",
                     ExpenseDate = DateTime.Today.AddDays(x - 5),
                     Location = "Chicago, IL",
                     Merchant = "Contoso Taxi",
+                    ChargeCategory = Charge.Category.Taxi,
                     Notes = string.Empty,
                     TransactionAmount = 50M
                 });
 
-                repository.SaveCharge(new DbCharge()
+                context.Set<Charge>().Add(new Charge()
                 {
-                    EmployeeId = employee.EmployeeId,
-                    ExpenseReportId = report.ExpenseReportId,
+                    Id = Guid.NewGuid().ToString(),
+
+                    EmployeeId = employee.Id,
+                    ExpenseReportId = report.Id,
                     BilledAmount = 50M,
                     Description = "Cab to airport",
                     ExpenseDate = DateTime.Today.AddDays(x - 3),
                     Location = "Chicago, IL",
                     Merchant = "Contoso Taxi",
+                    ChargeCategory = Charge.Category.Taxi,
                     Notes = string.Empty,
                     TransactionAmount = 50M
                 });
 
-                repository.SaveCharge(new DbCharge()
+                context.Set<Charge>().Add(new Charge()
                 {
-                    EmployeeId = employee.EmployeeId,
-                    ExpenseReportId = report.ExpenseReportId,
+                    Id = Guid.NewGuid().ToString(),
+
+                    EmployeeId = employee.Id,
+                    ExpenseReportId = report.Id,
                     BilledAmount = 400M,
                     Description = "2 nights hotel",
                     ExpenseDate = DateTime.Today.AddDays(x - 3),
                     Location = "Chicago, IL",
                     Merchant = "Northwind Inn",
+                    ChargeCategory = Charge.Category.Hotel,
                     Notes = string.Empty,
                     TransactionAmount = 400M
                 });
+                context.SaveChanges();
 
                 x -= 60;
             }
@@ -216,45 +269,44 @@ namespace Expenses.Data
             x = -30;
             for (int i = 1; i <= 18; i++)
             {
-                report = new DbExpenseReport()
+                report = new ExpenseReport()
                 {
-                    EmployeeId = employee.EmployeeId,
+                    Id = Guid.NewGuid().ToString(),
+
+                    EmployeeId = employee.Id,
                     Amount = 850M,
                     Approver = managerAlias,
                     CostCenter = 50992,
                     DateSubmitted = DateTime.Today.AddDays(x - 5),
                     DateResolved = DateTime.Today.AddDays(x),
                     Notes = "Last month's cell phone",
-                    Status = DbExpenseReportStatus.Approved,
+                    Status = ExpenseReportStatus.Approved,
                 };
-                repository.SaveExpenseReport(report);
+                context.Set<ExpenseReport>().Add(report);
+                context.SaveChanges();
 
-                repository.SaveCharge(new DbCharge()
+                context.Set<Charge>().Add(new Charge()
                 {
-                    EmployeeId = employee.EmployeeId,
-                    ExpenseReportId = report.ExpenseReportId,
+                    Id = Guid.NewGuid().ToString(),
+
+                    EmployeeId = employee.Id,
+                    ExpenseReportId = report.Id,
                     BilledAmount = 50M,
                     Description = "Cell phone bill",
                     ExpenseDate = DateTime.Today.AddDays(x - 10),
                     Location = "Seattle, WA",
                     Merchant = "The Phone Company",
                     Notes = string.Empty,
+                    ChargeCategory = Charge.Category.Other,
+
                     TransactionAmount = 50M
                 });
+                context.SaveChanges();
 
                 x -= 30;
             }
 
-            return repository.GetEmployee(employee.EmployeeId);
-        }
-
-        /// <summary>
-        /// Cleans up database by removing all records.
-        /// </summary>
-        public static void CleanRepository()
-        {
-            var repository = new ExpensesRepository();
-            repository.CleanRepository();
+            return employee;
         }
     }
 }

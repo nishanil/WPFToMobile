@@ -9,6 +9,8 @@ using Microsoft.Azure.Mobile.Server.Config;
 using MyExpenses.MobileAppService.DataObjects;
 using MyExpenses.MobileAppService.Models;
 using Owin;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace MyExpenses.MobileAppService
 {
@@ -26,7 +28,8 @@ namespace MyExpenses.MobileAppService
                 .ApplyTo(config);
 
             // Use Entity Framework Code First to create database tables based on your DbContext
-            Database.SetInitializer(new templateitemsInitializer());
+            var db = new ExpensesInitializer();
+            Database.SetInitializer(new ExpensesInitializer());
 
             // To prevent Entity Framework from modifying your database schema, use a null database initializer
             // Database.SetInitializer<templateitemsContext>(null);
@@ -50,9 +53,9 @@ namespace MyExpenses.MobileAppService
         }
     }
 
-    public class templateitemsInitializer : CreateDatabaseIfNotExists<MasterDetailContext>
+    public class ExpensesInitializer : CreateDatabaseIfNotExists<MyExpenseContext>
     {
-        protected override void Seed(MasterDetailContext context)
+        protected override void Seed(MyExpenseContext context)
         {
             List<Item> items = new List<Item>
             {
@@ -68,6 +71,9 @@ namespace MyExpenses.MobileAppService
             {
                 context.Set<Item>().Add(item);
             }
+
+            context.SaveChanges();
+            ExpensesDemoData.CreateNewDemoEmployee(ExpensesDemoData.DefaultEmployeeAlias, context);
 
             base.Seed(context);
         }

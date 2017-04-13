@@ -17,7 +17,7 @@ namespace MyExpenses.MobileAppService.Controllers
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            MasterDetailContext context = new MasterDetailContext();
+            MyExpenseContext context = new MyExpenseContext();
             DomainManager = new EntityDomainManager<Item>(context, Request);
         }
 

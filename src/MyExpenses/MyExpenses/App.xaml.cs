@@ -16,6 +16,7 @@ namespace MyExpenses
 		public static string AzureMobileAppUrl = "https://myexpenses-si.azurewebsites.net";
         public static IDictionary<string, string> LoginParameters => null;
 
+ 
         public App()
 		{
 			InitializeComponent();

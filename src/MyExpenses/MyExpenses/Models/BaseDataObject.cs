@@ -7,6 +7,7 @@ namespace MyExpenses.Models
 {
 	public class BaseDataObject : ObservableObject
 	{
+        
 		public BaseDataObject()
 		{
 			Id = Guid.NewGuid().ToString();

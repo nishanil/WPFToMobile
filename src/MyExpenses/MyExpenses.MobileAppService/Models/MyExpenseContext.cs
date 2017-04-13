@@ -7,7 +7,7 @@ using MyExpenses.MobileAppService.DataObjects;
 
 namespace MyExpenses.MobileAppService.Models
 {
-    public class MasterDetailContext : DbContext
+    public class MyExpenseContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -18,11 +18,15 @@ namespace MyExpenses.MobileAppService.Models
 
         private const string connectionStringName = "Name=MS_TableConnectionString";
 
-        public MasterDetailContext() : base(connectionStringName)
+        public MyExpenseContext() : base(connectionStringName)
         {
         }
 
         public DbSet<Item> Items { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Charge> Charges { get; set; }
+        public DbSet<ExpenseReport> ExpenseReports { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
