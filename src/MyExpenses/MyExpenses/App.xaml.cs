@@ -5,6 +5,9 @@ using MyExpenses.Services;
 using MyExpenses.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MyExpenses.Stores;
+using MyExpenses.Models;
+using MyExpenses.DataStores;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MyExpenses
@@ -12,7 +15,7 @@ namespace MyExpenses
 	public partial class App : Application
 	{
         //MUST use HTTPS, neglecting to do so will result in runtime errors on iOS
-		public static bool AzureNeedsSetup => AzureMobileAppUrl == "https://CONFIGURE-THIS-URL.azurewebsites.net";
+		
 		public static string AzureMobileAppUrl = "https://myexpenses-si.azurewebsites.net";
         public static IDictionary<string, string> LoginParameters => null;
 
@@ -20,18 +23,12 @@ namespace MyExpenses
         public App()
 		{
 			InitializeComponent();
-
-			if (AzureNeedsSetup)
-				DependencyService.Register<MockDataStore>();
-			else
-				DependencyService.Register<AzureDataStore>();
-
-			SetMainPage();
+            SetMainPage();
 		}
 
 		public static void SetMainPage()
 		{
-            if (!AzureNeedsSetup && !Settings.IsLoggedIn)
+            if (!Settings.IsLoggedIn)
             {
                 Current.MainPage = new NavigationPage(new LoginPage())
                 {
@@ -47,32 +44,7 @@ namespace MyExpenses
 
         public static void GoToMainPage()
         {
-            Current.MainPage = new TabbedPage
-			{
-				Children =
-				{
-                    new NavigationPage(new ExpensesPage())
-                    {
-                        Title = "Expenses",
-                        Icon = Device.OnPlatform("CreditCard.png",null,null)
-                    },
-                    new NavigationPage(new ReportsPage())
-					{
-						Title = "Reports",
-						Icon = Device.OnPlatform("Chart.png",null,null)
-					},
-					new NavigationPage(new AboutPage())
-					{
-						Title = "Settings",
-						Icon = Device.OnPlatform("Settings.png",null,null)
-					},
-                    new NavigationPage(new AboutPage())
-                    {
-                        Title = "Profile",
-                        Icon = Device.OnPlatform("Person.png",null,null)
-                    },
-                }
-			};
+            Current.MainPage = new MainPage();
         }
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using MyExpenses.Helpers;
 using MyExpenses.Models;
 using MyExpenses.Services;
-
+using MyExpenses.Stores;
 using Xamarin.Forms;
 
 namespace MyExpenses.ViewModels
@@ -11,7 +11,7 @@ namespace MyExpenses.ViewModels
 		/// <summary>
 		/// Get the azure service instance
 		/// </summary>
-		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+		public IDataStore<Item> DataStore => DependencyService.Get<ItemDataStore>();
 
 		bool isBusy = false;
 		public bool IsBusy

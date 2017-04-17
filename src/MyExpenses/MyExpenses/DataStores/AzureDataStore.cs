@@ -10,31 +10,27 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using Plugin.Connectivity;
+using MyExpenses.Services;
 
-namespace MyExpenses.Services
+namespace MyExpenses.Stores
 {
-	public class AzureDataStore : IDataStore<Item>
+	public class AzureDataStore<T> : IDataStore<T> where T : BaseDataObject, new()
 	{
-        public bool UseAuthentication => false;
-        public MobileServiceAuthenticationProvider AuthProvider => MobileServiceAuthenticationProvider.Facebook;
-
         bool isInitialized;
-		IMobileServiceSyncTable<Item> itemsTable;
+		IMobileServiceSyncTable<T> itemsTable;
 
-		public MobileServiceClient MobileService { get; set; }
+		public MobileServiceClient MobileService { get; private set; }
 
-		public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+		public async Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false)
 		{
-			await InitializeAsync();
 			if (forceRefresh)
 				await PullLatestAsync();
 
 			return await itemsTable.ToEnumerableAsync();
 		}
 
-		public async Task<Item> GetItemAsync(string id)
+		public async Task<T> GetItemAsync(string id)
 		{
-			await InitializeAsync();
 			await PullLatestAsync();
 			var items = await itemsTable.Where(s => s.Id == id).ToListAsync();
 
@@ -44,9 +40,8 @@ namespace MyExpenses.Services
 			return items[0];
 		}
 
-		public async Task<bool> AddItemAsync(Item item)
+		public async Task<bool> AddItemAsync(T item)
 		{
-			await InitializeAsync();
 			await PullLatestAsync();
 			await itemsTable.InsertAsync(item);
 			await SyncAsync();
@@ -54,18 +49,17 @@ namespace MyExpenses.Services
 			return true;
 		}
 
-		public async Task<bool> UpdateItemAsync(Item item)
+		public async Task<bool> UpdateItemAsync(T item)
 		{
-			await InitializeAsync();
 			await itemsTable.UpdateAsync(item);
 			await SyncAsync();
 
 			return true;
 		}
 
-		public async Task<bool> DeleteItemAsync(Item item)
+		public async Task<bool> DeleteItemAsync(T item)
 		{
-			await InitializeAsync();
+
 			await PullLatestAsync();
 			await itemsTable.DeleteAsync(item);
 			await SyncAsync();
@@ -73,39 +67,19 @@ namespace MyExpenses.Services
 			return true;
 		}
 
-		public async Task InitializeAsync()
-		{
-			if (isInitialized)
-				return;
+        public Task<bool> InitializeAsync(MobileServiceClient client,
+            MobileServiceSQLiteStore store)
+        {
+            MobileService = client;
+            store.DefineTable<T>();
+            itemsTable = MobileService.GetSyncTable<T>();
+            isInitialized = true;
 
-			AuthenticationHandler handler = null;
+            return Task.FromResult<bool>(isInitialized);
 
-			if (UseAuthentication)
-				handler = new AuthenticationHandler();
+        }
 
-			MobileService = new MobileServiceClient(App.AzureMobileAppUrl, handler)
-			{
-				SerializerSettings = new MobileServiceJsonSerializerSettings
-				{
-					CamelCasePropertyNames = true
-				}
-			};
-
-			if (UseAuthentication && !string.IsNullOrWhiteSpace(Settings.AuthToken) && !string.IsNullOrWhiteSpace(Settings.UserId))
-			{
-				MobileService.CurrentUser = new MobileServiceUser(Settings.UserId);
-				MobileService.CurrentUser.MobileServiceAuthenticationToken = Settings.AuthToken;
-			}
-
-			var store = new MobileServiceSQLiteStore("app.db");
-			store.DefineTable<Item>();
-			await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
-			itemsTable = MobileService.GetSyncTable<Item>();
-
-			isInitialized = true;
-		}
-
-		public async Task<bool> PullLatestAsync()
+        public async Task<bool> PullLatestAsync()
 		{
 			if (!CrossConnectivity.Current.IsConnected)
 			{
@@ -169,5 +143,6 @@ namespace MyExpenses.Services
 
 			return true;
 		}
-	}
+
+    }
 }

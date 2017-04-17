@@ -30,6 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataStores\AzureDataManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStores\ItemDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\GenericEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\GroupInfoList.cs" />
@@ -64,6 +66,7 @@
       <DependentUpon>ExpensesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ReportsDetailPage.xaml.cs">
       <DependentUpon>ReportsDetailPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -73,9 +76,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStores\MockDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStores\IDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStores\AzureDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseDataObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObservableObject.cs" />

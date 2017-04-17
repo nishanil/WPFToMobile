@@ -11,6 +11,7 @@ using MyExpenses.Helpers;
 using MyExpenses.Models;
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Forms;
+using MyExpenses.Stores;
 
 namespace MyExpenses.Services
 {
@@ -74,7 +75,7 @@ namespace MyExpenses.Services
 				if (isReauthenticating)
 					return response;
 
-				var client = DependencyService.Get<IDataStore<Item>>() as AzureDataStore;
+				var client = DependencyService.Get<IDataStore<Item>>() as AzureDataStore<Item>;
 
 				string authToken = client.MobileService.CurrentUser.MobileServiceAuthenticationToken;
 				await semaphore.WaitAsync();

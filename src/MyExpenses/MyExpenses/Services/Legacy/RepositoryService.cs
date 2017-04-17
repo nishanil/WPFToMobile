@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 namespace Expenses.WPF.Services
 {
     //TODO: Fix this
+    #region Legacy Code
     //class RepositoryService : IRepositoryService
     //{
     //    private IViewService _viewService;
@@ -287,4 +288,6 @@ namespace Expenses.WPF.Services
     //        }
     //    }
     //}
+    #endregion 
+
 }

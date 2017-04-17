@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MyExpenses.Services
+namespace MyExpenses.Stores
 {
 	public interface IDataStore<T>
 	{
@@ -11,7 +13,7 @@ namespace MyExpenses.Services
 		Task<T> GetItemAsync(string id);
 		Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
 
-		Task InitializeAsync();
+		Task<bool> InitializeAsync(MobileServiceClient client, MobileServiceSQLiteStore store);
 		Task<bool> PullLatestAsync();
 		Task<bool> SyncAsync();
 	}

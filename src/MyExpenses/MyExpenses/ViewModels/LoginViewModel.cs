@@ -6,6 +6,8 @@ using MyExpenses.Helpers;
 using MyExpenses.Services;
 
 using Xamarin.Forms;
+using MyExpenses.Stores;
+using MyExpenses.DataStores;
 
 namespace MyExpenses.ViewModels
 {
@@ -52,8 +54,7 @@ namespace MyExpenses.ViewModels
 			var authentication = DependencyService.Get<IAuthenticator>();
 			authentication.ClearCookies();
 
-			var dataStore = DependencyService.Get<IDataStore<Item>>() as AzureDataStore;
-			await dataStore.InitializeAsync();
+			var dataStore = DependencyService.Get<IDataManager>();
 
             if (dataStore.UseAuthentication)
             {

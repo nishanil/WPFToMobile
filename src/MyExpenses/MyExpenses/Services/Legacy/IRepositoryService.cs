@@ -20,13 +20,13 @@ namespace Expenses.WPF.Services
 
         Task<ExpenseReport> GetExpenseReportAsync(string expenseReportId);
 
-        Task<int> CreateNewChargeAsync(Charge charge);
+        Task<string> CreateNewChargeAsync(Charge charge);
 
-        Task<int> CreateNewExpenseReportAsync(ExpenseReport expenseReport);
+        Task<string> CreateNewExpenseReportAsync(ExpenseReport expenseReport);
         
-        Task<int> UpdateChargeAsync(Charge charge);
+        Task<string> UpdateChargeAsync(Charge charge);
         
-        Task<int> UpdateExpenseReportAsync(ExpenseReport expenseReport);
+        Task<string> UpdateExpenseReportAsync(ExpenseReport expenseReport);
 
         Task DeleteExpenseReportAsync(string expenseReportId);
 

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using MyExpenses.Models;
+using Microsoft.WindowsAzure.MobileServices;
+using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
-namespace MyExpenses.Services
+namespace MyExpenses.Stores
 {
 	public class MockDataStore : IDataStore<Item>
 	{
@@ -14,7 +16,7 @@ namespace MyExpenses.Services
 
 		public async Task<bool> AddItemAsync(Item item)
 		{
-			await InitializeAsync();
+
 
 			items.Add(item);
 
@@ -23,7 +25,7 @@ namespace MyExpenses.Services
 
 		public async Task<bool> UpdateItemAsync(Item item)
 		{
-			await InitializeAsync();
+
 
 			var _item = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
 			items.Remove(_item);
@@ -34,7 +36,7 @@ namespace MyExpenses.Services
 
 		public async Task<bool> DeleteItemAsync(Item item)
 		{
-			await InitializeAsync();
+
 
 			var _item = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
 			items.Remove(_item);
@@ -44,14 +46,14 @@ namespace MyExpenses.Services
 
 		public async Task<Item> GetItemAsync(string id)
 		{
-			await InitializeAsync();
+
 
 			return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
 		}
 
 		public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
 		{
-			await InitializeAsync();
+
 
 			return await Task.FromResult(items);
 		}
@@ -67,12 +69,13 @@ namespace MyExpenses.Services
 			return Task.FromResult(true);
 		}
 
-		public async Task InitializeAsync()
+		public async Task<bool> InitializeAsync(MobileServiceClient client,
+            MobileServiceSQLiteStore store)
 		{
 			if (isInitialized)
-				return;
+                await Task.FromResult(true);
 
-			items = new List<Item>();
+            items = new List<Item>();
 			var _items = new List<Item>
 			{
 				new Item { Id = Guid.NewGuid().ToString(), Text = "Buy some cat food", Description="The cats are hungry"},
@@ -89,6 +92,8 @@ namespace MyExpenses.Services
 			}
 
 			isInitialized = true;
+            return await Task.FromResult(true);
 		}
-	}
+
+    }
 }
