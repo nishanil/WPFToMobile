@@ -30,6 +30,33 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\Enums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\GenericEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\GroupInfoList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\Utilities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Charge.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Employee.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ExpenseReport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\CurrentIdentityService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\ICurrentIdentityService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\INavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\IRepositoryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\IServiceFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\IViewService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\RepositoryService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\ServiceFactoryImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Legacy\ViewService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\AddChargesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\ChargesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\ChargeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\EditExpenseReportViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\ExpenseReportChargesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\ExpenseReportsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\ExpenseReportViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\MainWindowViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Legacy\ViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -69,12 +96,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SelectMultipleBasePage.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ExpensesPage.xaml">
