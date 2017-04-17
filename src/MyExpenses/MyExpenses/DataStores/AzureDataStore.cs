@@ -12,7 +12,7 @@ using Microsoft.WindowsAzure.MobileServices.Sync;
 using Plugin.Connectivity;
 using MyExpenses.Services;
 
-namespace MyExpenses.Stores
+namespace MyExpenses.DataStores
 {
 	public class AzureDataStore<T> : IDataStore<T> where T : BaseDataObject, new()
 	{

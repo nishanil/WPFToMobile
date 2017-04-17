@@ -32,7 +32,7 @@
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16"/>
-                                    <Label Text="Paid for Mobile bill"
+                                    <Label Text="{Binding Notes}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13"/>
@@ -44,7 +44,7 @@
                                 </StackLayout>
                      <StackLayout Grid.Column="1"
                          HorizontalOptions="EndAndExpand" Padding="10">
-                     <Label Text="$250"
+                     <Label Text="{Binding Amount}"
                       HorizontalTextAlignment="End"
                       HorizontalOptions="FillAndExpand"
                       TextColor="#81c784"

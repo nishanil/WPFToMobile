@@ -7,7 +7,7 @@ using MyExpenses.Models;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 
-namespace MyExpenses.Stores
+namespace MyExpenses.DataStores
 {
 	public class MockDataStore : IDataStore<Item>
 	{

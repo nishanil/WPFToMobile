@@ -31,6 +31,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DataStores\AzureDataManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStores\ExpenseReportDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStores\ItemDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\Enums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Legacy\GenericEventArgs.cs" />

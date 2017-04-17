@@ -12,18 +12,18 @@ namespace MyExpenses.ViewModels
 {
 	public class ItemsViewModel : BaseViewModel
 	{
-		public ObservableRangeCollection<Item> Items { get; set; }
+		public ObservableRangeCollection<ExpenseReport> Items { get; set; }
 		public Command LoadItemsCommand { get; set; }
 
 		public ItemsViewModel()
 		{
 			Title = "My Expenses";
-			Items = new ObservableRangeCollection<Item>();
+			Items = new ObservableRangeCollection<ExpenseReport>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-			MessagingCenter.Subscribe<ExpenseDetailPage, Item>(this, "AddItem", async (obj, item) =>
+			MessagingCenter.Subscribe<ExpenseDetailPage, ExpenseReport>(this, "AddItem", async (obj, item) =>
 			{
-				var _item = item as Item;
+				var _item = item as ExpenseReport;
 				Items.Add(_item);
 				await DataStore.AddItemAsync(_item);
 			});

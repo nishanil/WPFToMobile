@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MyExpenses.Stores
+namespace MyExpenses.DataStores
 {
 	public interface IDataStore<T>
 	{

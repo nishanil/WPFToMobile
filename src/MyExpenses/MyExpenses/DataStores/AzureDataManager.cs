@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using MyExpenses.Helpers;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using Xamarin.Forms;
-using MyExpenses.Stores;
-using MyExpenses.Models;
 using MyExpenses.DataStores;
+using MyExpenses.Models;
+
 
 [assembly: Dependency(typeof(AzureDataManager))]
 namespace MyExpenses.DataStores
@@ -69,7 +69,7 @@ namespace MyExpenses.DataStores
 
         private async Task InitDataStores()
         {
-            await DependencyService.Get<ItemDataStore>().InitializeAsync(MobileService, SQLiteStore);
+            await DependencyService.Get<ExpenseReportDataStore>().InitializeAsync(MobileService, SQLiteStore);
         }
     }
 }

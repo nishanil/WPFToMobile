@@ -6,7 +6,7 @@ using MyExpenses.Helpers;
 using MyExpenses.Services;
 
 using Xamarin.Forms;
-using MyExpenses.Stores;
+using MyExpenses.DataStores;
 using MyExpenses.DataStores;
 
 namespace MyExpenses.ViewModels

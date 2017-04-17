@@ -5,7 +5,7 @@ using MyExpenses.Services;
 using MyExpenses.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using MyExpenses.Stores;
+using MyExpenses.DataStores;
 using MyExpenses.Models;
 using MyExpenses.DataStores;
 

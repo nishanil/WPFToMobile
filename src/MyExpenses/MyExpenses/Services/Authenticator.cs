@@ -11,7 +11,7 @@ using MyExpenses.Helpers;
 using MyExpenses.Models;
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Forms;
-using MyExpenses.Stores;
+using MyExpenses.DataStores;
 
 namespace MyExpenses.Services
 {
