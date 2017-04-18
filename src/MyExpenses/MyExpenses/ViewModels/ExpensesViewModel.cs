@@ -47,6 +47,8 @@ namespace MyExpenses.ViewModels
                 var employee = await Repo.GetEmployeeAsync(App.DefaultEmployeeAlias);
                 //TODO: Temp Hack. Fix this when login page is ready
                 App.EmployeeId = employee.Id;
+                DependencyService.Get<CurrentIdentityService>().SetNewIdentity(employee.Alias, employee.Id, employee.Manager, employee.Name, false);
+
                 var items = await Repo.GetOutstandingChargesForEmployeeAsync(employee.Id);
                 Items.ReplaceRange(items);
 

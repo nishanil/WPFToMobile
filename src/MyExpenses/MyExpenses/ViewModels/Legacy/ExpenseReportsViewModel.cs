@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
+using System;
 
 namespace Expenses.WPF.ViewModels
 {
@@ -39,8 +41,27 @@ namespace Expenses.WPF.ViewModels
         public readonly ICurrentIdentityService _currentIdentityService;
         private readonly IViewService _viewService;
 
+        private ExpenseReportStatus selectedReportStatus;
+
+        public ExpenseReportStatus SelectedReportStatus
+        {
+            get { return selectedReportStatus; }
+            set { selectedReportStatus = value; this.NotifyOfPropertyChange(() => this.SelectedReportStatus); }
+        }
+
+        public async void SelectedReportStatusChanged(object o, string e)
+        {
+           if(Enum.TryParse<ExpenseReportStatus>(e, out var result))
+            {
+
+                SelectedReportStatus = result;
+                await RefreshData();
+            }
+        }
+
         public ICommand ViewReportCommand { get; private set; }
 
+        public ICommand RefreshDataCommand { get; }
 
         public ExpenseReportsViewModel(IServiceFactory serviceFactory)
         {
@@ -58,6 +79,48 @@ namespace Expenses.WPF.ViewModels
                 {
                     this.ViewReport(report);
                 });
+
+            RefreshDataCommand = new Command(
+               async () => await RefreshData());
+
+            Title = "Expense Reports";
+
+            this._viewService.BusyChanged += _viewService_BusyChanged;
+        }
+
+        private string title;
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; this.NotifyOfPropertyChange(() => this.Title); }
+        }
+
+        private bool isBusy;
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { isBusy = value; this.NotifyOfPropertyChange(()=> this.IsBusy); }
+        }
+
+        private void _viewService_BusyChanged(object sender, EventArgs<bool> e)
+        {
+            IsBusy = e.Data;
+        }
+
+        private async Task RefreshData()
+        {
+            switch (SelectedReportStatus)
+            {
+                case ExpenseReportStatus.Submitted:
+                    await LoadSubmittedExpenseReportsAsync(); break;
+                case ExpenseReportStatus.Saved:
+                    await LoadSavedExpenseReportsAsync(); break;
+                case ExpenseReportStatus.Approved:
+                    await LoadApprovedExpenseReportsAsync(); break;
+                default: await LoadAllExpenseReportsAsync(); break;
+            }
         }
 
         private void ViewReport(ExpenseReportViewModel reportViewModel)

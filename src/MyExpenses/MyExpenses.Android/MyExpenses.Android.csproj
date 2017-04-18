@@ -142,6 +142,7 @@
   <ItemGroup>
     <Compile Include="Authentication\SocialAuthenticator.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\OptionsRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\Settings.cs" />

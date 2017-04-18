@@ -206,6 +206,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Authentication\SocialAuthenticator.cs" />
+    <Compile Include="Renderers\OptionsRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_generic.png" />
@@ -298,6 +299,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Taxi%403x.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\MyExpenses\MyExpenses.projitems" Label="Shared" Condition="Exists('..\MyExpenses\MyExpenses.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

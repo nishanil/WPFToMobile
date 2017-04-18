@@ -356,10 +356,9 @@ namespace Expenses.WPF.ViewModels
                 {
                     // extract ExpenseReport from WCF service
                     //TODO: Fix this
-                    await Task.Delay(1000);
-                    // var expenseReport = await this._repositoryService.GetExpenseReportAsync(expenseReportId);
+                    var expenseReport = await this._repositoryService.GetExpenseReportAsync(expenseReportId);
                     
-                    var expenseReport = new ExpenseReport();
+                   
 
                     this.Load(expenseReport);
                 });
@@ -404,16 +403,16 @@ namespace Expenses.WPF.ViewModels
                     };
 
                     // save expense report to repository
-                    //TODO: Fix this
-                    //if (this.ExpenseReportId == 0)
-                    //{
-                    //    this.ExpenseReportId = await this._repositoryService.CreateNewExpenseReportAsync(expenseReport);
-                    //}
-                    //else
-                    //{
-                    //    this.ExpenseReportId = await this._repositoryService.UpdateExpenseReportAsync(expenseReport);
-                    //}
-                    
+
+                    if (this.ExpenseReportId == null)
+                    {
+                        this.ExpenseReportId = await this._repositoryService.CreateNewExpenseReportAsync(expenseReport);
+                    }
+                    else
+                    {
+                        this.ExpenseReportId = await this._repositoryService.UpdateExpenseReportAsync(expenseReport);
+                    }
+
                     await this.LoadAsync(this.ExpenseReportId);
                 });
         }
@@ -423,10 +422,9 @@ namespace Expenses.WPF.ViewModels
             await this._viewService.ExecuteBusyActionAsync(
                 async () =>
                 {
-                    //TODO: Fix this
-                    await Task.Delay(1000);
+                    
                     // Delete report
-                   // await this._repositoryService.DeleteExpenseReportAsync(this.ExpenseReportId);
+                   await this._repositoryService.DeleteExpenseReportAsync(this.ExpenseReportId);
                 });
 
             this._navigationService.ShowSavedExpenseReports();

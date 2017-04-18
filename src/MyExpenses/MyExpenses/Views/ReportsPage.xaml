@@ -2,22 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyExpenses.Views.ReportsPage"
+             xmlns:local="clr-namespace:MyExpenses;assembly=MyExpenses"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add Item" Clicked="AddItem_Clicked" />
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
+
             <ListView x:Name="ItemsListView"
-				ItemsSource="{Binding Items}"
+				ItemsSource="{Binding ExpenseReports}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                RefreshCommand="{Binding LoadItemsCommand}"
+                RefreshCommand="{Binding RefreshDataCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
 				ItemSelected="OnItemSelected">
+                <ListView.Header>
+                    <StackLayout Padding="20">
+                        <local:Options x:Name="sortOptions" SelectedIndexChanged="Options_OnSelectedIndexChanged">
+                            <local:Options.Items>
+                                <x:String>Saved</x:String>
+                                <x:String>Submitted</x:String>
+                                <x:String>Approved</x:String>
+                            </local:Options.Items>
+                        </local:Options>
+                    </StackLayout>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -28,23 +41,23 @@
 
                                 </Grid.ColumnDefinitions>
                                 <StackLayout Padding="10">
-                                    <Label Text="Report Id: 3"
-                       LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemTextStyle}"
-                       FontSize="16"/>
+                                    <Label Text="{Binding DisplayDate, StringFormat='{0:MMMM}'}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
                                     <Label Text="{Binding Notes}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13"/>
-                                    <Label Text="Saved"
+                                    <Label Text="{Binding Status}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        TextColor="#f06292"
                        FontSize="13"/>
                                 </StackLayout>
-                     <StackLayout Grid.Column="1"
+                                <StackLayout Grid.Column="1"
                          HorizontalOptions="EndAndExpand" Padding="10">
-                     <Label Text="{Binding Amount}"
+                                    <Label Text="{Binding Amount, StringFormat='{0:C}'}"
                       HorizontalTextAlignment="End"
                       HorizontalOptions="FillAndExpand"
                       TextColor="#81c784"

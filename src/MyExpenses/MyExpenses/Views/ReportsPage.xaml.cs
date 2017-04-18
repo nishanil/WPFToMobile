@@ -4,18 +4,21 @@ using MyExpenses.Models;
 using MyExpenses.ViewModels;
 
 using Xamarin.Forms;
+using Expenses.WPF.ViewModels;
+using Expenses.WPF.Services;
 
 namespace MyExpenses.Views
 {
 	public partial class ReportsPage : ContentPage
 	{
-		ItemsViewModel viewModel;
+        ExpenseReportsViewModel viewModel;
 
 		public ReportsPage()
 		{
 			InitializeComponent();
 
-			BindingContext = viewModel = new ItemsViewModel();
+			BindingContext = viewModel = new ExpenseReportsViewModel(
+                DependencyService.Get<IServiceFactory>());
 		}
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -35,12 +38,29 @@ namespace MyExpenses.Views
 			await Navigation.PushAsync(new ReportsDetailPage());
 		}
 
-		protected override void OnAppearing()
+		protected async override void OnAppearing()
 		{
 			base.OnAppearing();
 
-			if (viewModel.Items.Count == 0)
-				viewModel.LoadItemsCommand.Execute(null);
-		}
-	}
+            if (viewModel.ExpenseReports.Count == 0)
+                await viewModel.LoadAllExpenseReportsAsync();
+
+            SortOptionsChanged += viewModel.SelectedReportStatusChanged;
+
+        }
+
+        protected override void OnDisappearing()
+        {
+            SortOptionsChanged -= viewModel.SelectedReportStatusChanged;
+
+            base.OnDisappearing();
+        }
+
+        public event EventHandler<string> SortOptionsChanged;
+        private void Options_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = sortOptions.Items[sortOptions.SelectedIndex];
+            SortOptionsChanged?.Invoke(this, selectedItem);
+        }
+    }
 }

@@ -36,6 +36,8 @@ namespace MyExpenses.Views
             }
         }
 
+       
+
         public ExpensesPage()
         {
             InitializeComponent();
