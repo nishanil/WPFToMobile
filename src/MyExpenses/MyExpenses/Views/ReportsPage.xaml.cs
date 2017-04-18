@@ -46,12 +46,26 @@ namespace MyExpenses.Views
                 await viewModel.LoadAllExpenseReportsAsync();
 
             SortOptionsChanged += viewModel.SelectedReportStatusChanged;
+            DependencyService.Get<NavigationService>().ShowSavedExpenseReportsRequested += ReportsPage_ShowSavedExpenseReportsRequested;
+        }
 
+        private void ReportsPage_ShowSavedExpenseReportsRequested(object sender, EventArgs e)
+        {
+            sortOptions.SelectedIndex = 0;
+        }
+
+        public async void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            var itemViewModel = mi.CommandParameter as ExpenseReportViewModel;
+            await itemViewModel.DeleteAsync();
+            await DisplayAlert("Record Deleted",itemViewModel.Notes, "OK");
         }
 
         protected override void OnDisappearing()
         {
             SortOptionsChanged -= viewModel.SelectedReportStatusChanged;
+            DependencyService.Get<NavigationService>().ShowSavedExpenseReportsRequested -= ReportsPage_ShowSavedExpenseReportsRequested;
 
             base.OnDisappearing();
         }

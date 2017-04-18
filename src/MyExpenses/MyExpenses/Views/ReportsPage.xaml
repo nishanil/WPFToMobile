@@ -34,6 +34,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                                    Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>
                             <Grid ColumnSpacing="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -61,8 +65,8 @@
                       HorizontalTextAlignment="End"
                       HorizontalOptions="FillAndExpand"
                       TextColor="#81c784"
-                      FontSize="Large"
-                      FontAttributes="Bold"/>
+                      FontSize="Medium"
+                      />
                                 </StackLayout>
                             </Grid>
                         </ViewCell>
