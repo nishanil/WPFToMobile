@@ -101,6 +101,7 @@
                         <Label HorizontalOptions="Start"
                                Grid.Column="1" 
                                Grid.Row="0"
+                               TextColor="#f06292"
                                Text="{Binding Description}" 
                                Style="{DynamicResource ListItemTextStyle}" />
                         <Label HorizontalOptions="Start"
