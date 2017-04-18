@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:MyExpenses.Converters;assembly=MyExpenses"
              x:Class="MyExpenses.Views.ExpensesPage"
-             Title="Outstanding Expenses">
+             Title="{Binding Title}">
     <ContentPage.Resources>
         <ResourceDictionary>
             
@@ -79,7 +79,7 @@
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
-                    <Grid RowSpacing="1">
+                    <Grid RowSpacing="1" Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -112,13 +112,13 @@
                                Grid.Row="0"
                                Grid.RowSpan="1"
                                Text="{Binding TransactionAmount, StringFormat='{0:C}'}"
-                               HorizontalTextAlignment="Center"
+                               HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               HorizontalOptions="FillAndExpand"
+                               HorizontalOptions="EndAndExpand"
                                VerticalOptions="FillAndExpand"
                                TextColor="#81c784"
-                               FontSize="Large"
-                               FontAttributes="Bold"/>
+                               FontSize="Medium"
+                               />
                     </Grid>
           <!--<StackLayout>
             <Label Text="{Binding Text}" 

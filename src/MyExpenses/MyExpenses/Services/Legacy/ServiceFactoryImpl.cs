@@ -14,7 +14,7 @@ namespace Expenses.WPF.Services
         {
             get 
             { 
-                return DependencyService.Get<ICurrentIdentityService>(); 
+                return DependencyService.Get<CurrentIdentityService>(); 
             }
         }
 
@@ -22,7 +22,7 @@ namespace Expenses.WPF.Services
         {
             get
             {
-                return DependencyService.Get<INavigationService>();
+                return DependencyService.Get<NavigationService>();
             }
         }
 
@@ -30,7 +30,7 @@ namespace Expenses.WPF.Services
         {
             get
             {
-                return DependencyService.Get<IRepositoryService>();
+                return DependencyService.Get<RepositoryService>();
             }
         }
 
@@ -38,7 +38,7 @@ namespace Expenses.WPF.Services
         {
             get
             {
-                return DependencyService.Get<IViewService>();
+                return DependencyService.Get<ViewService>();
             }
         }
     }

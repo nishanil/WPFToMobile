@@ -42,6 +42,9 @@ namespace MyExpenses.DataStores
 
 		public async Task<bool> AddItemAsync(T item)
 		{
+            if (item.Id == null)
+                item.Id = Guid.NewGuid().ToString();
+
 			await PullLatestAsync();
 			await itemsTable.InsertAsync(item);
 			await SyncAsync();

@@ -230,17 +230,17 @@ namespace Expenses.WPF.ViewModels
                                 Merchant = this.Merchant,
                                 Notes = this.Notes,
                                 TransactionAmount = this.TransactionAmount,
+                                ChargeCategory = SelectedCategory
                             };
-                            //TODO: Fix this
-                            await Task.Delay(1000);
-                            //if (this.ChargeId > 0)
-                            //{
-                            //    this.ChargeId = await this._repositoryService.UpdateChargeAsync(charge);
-                            //}
-                            //else 
-                            //{
-                            //    this.ChargeId = await this._repositoryService.CreateNewChargeAsync(charge);
-                            //}
+
+                            if (this.ChargeId != null)
+                            {
+                                this.ChargeId = await this._repositoryService.UpdateChargeAsync(charge);
+                            }
+                            else
+                            {
+                                this.ChargeId = await this._repositoryService.CreateNewChargeAsync(charge);
+                            }
 
                             // navigate to previous page
                             this._navigationService.ShowCharges();
@@ -291,6 +291,11 @@ namespace Expenses.WPF.ViewModels
             this._merchant = charge.Merchant;
             this._notes = charge.Notes;
             this._transactionAmount = charge.TransactionAmount;
+
+            if (charge.Id != null)
+            {
+                CategorySelectedIndex = Categories.IndexOf(Enum.GetName(typeof(Category), charge.ChargeCategory));
+            }
 
             this._modified = false;
         }
@@ -361,6 +366,40 @@ namespace Expenses.WPF.ViewModels
             get
             {
                 return this.GetErrors(null).Cast<string>().Count() > 0;
+            }
+        }
+
+        public List<string> Categories
+        {
+            get { return Enum.GetNames(typeof(Category)).ToList(); }
+        }
+
+        private Category category;
+
+        public Category SelectedCategory
+        {
+            get { return category; }
+            set { category = value; this.NotifyOfPropertyChange(() => this.SelectedCategory); }
+        }
+
+
+        int categorySelectedIndex;
+        public int CategorySelectedIndex
+        {
+            get
+            {
+                return categorySelectedIndex;
+            }
+            set
+            {
+
+                categorySelectedIndex = value;
+
+                // trigger some action to take such as updating other labels or fields
+                this.NotifyOfPropertyChange(() => this.CategorySelectedIndex);
+                if (Enum.TryParse<Category>(Categories[categorySelectedIndex], out var ctg))
+                    SelectedCategory = ctg;
+
             }
         }
     }

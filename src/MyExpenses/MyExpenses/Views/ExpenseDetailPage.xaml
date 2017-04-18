@@ -4,26 +4,29 @@
              x:Class="MyExpenses.Views.ExpenseDetailPage"
 		Title="Expense Detail">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Save" Clicked="Save_Clicked" />
+        <ToolbarItem Text="Save" Command="{Binding SaveChargeCommand}"/>
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
                 <Label Text="Date" FontSize="Micro" />
 
-                <DatePicker Format="D"/>
+                <DatePicker Format="D" Date="{Binding ExpenseDate}"/>
                 <Label Text="Merchant" FontSize="Micro" />
-			<Entry Text="{Binding Item.Text}" FontSize="Small" />
+                <Entry Text="{Binding Merchant}" FontSize="Small" />
+                <Label Text="Category" FontSize="Micro" />
+                <Picker SelectedIndex="{Binding CategorySelectedIndex}" 
+                        ItemsSource="{Binding Categories}" />
                 <Label Text="Location" FontSize="Micro" />
-                <Entry Text="{Binding Item.Text}" FontSize="Small" />
+                <Entry Text="{Binding Location}" FontSize="Small" />
                 <Label Text="Billed Amount" FontSize="Micro" />
-                <Entry Text="{Binding Item.Text}" FontSize="Small" />
+                <Entry Text="{Binding BilledAmount}" FontSize="Small" />
                 <Label Text="Transaction Amount" FontSize="Micro" />
-                <Entry Text="{Binding Item.Text}" FontSize="Small" />
+                <Entry Text="{Binding TransactionAmount}" FontSize="Small" />
                 <Label Text="Notes" FontSize="Micro" />
-			<Editor Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
+                <Editor Text="{Binding Notes}" FontSize="Small" Margin="0" />
                 <Label Text="Description" FontSize="Micro" />
-                <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
+                <Editor Text="{Binding Description}" FontSize="Small" Margin="0" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

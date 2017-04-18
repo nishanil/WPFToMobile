@@ -18,6 +18,8 @@ namespace MyExpenses
 	{
         //MUST use HTTPS, neglecting to do so will result in runtime errors on iOS
         public static string DefaultEmployeeAlias = "nanil";
+        public static string EmployeeId = null;
+
         public static string AzureMobileAppUrl = "https://myexpenses-si.azurewebsites.net";
         public static IDictionary<string, string> LoginParameters => null;
 

@@ -24,6 +24,8 @@ namespace MyExpenses.ViewModels
 
         public ExpensesViewModel()
         {
+            Title = "Charges";
+
             Items = new ObservableRangeCollection<Charge>();
 
             ItemsGrouped = new ObservableRangeCollection<Grouping<string, Charge>>();
@@ -43,15 +45,17 @@ namespace MyExpenses.ViewModels
                 Items.Clear();
                 ItemsGrouped.Clear();
                 var employee = await Repo.GetEmployeeAsync(App.DefaultEmployeeAlias);
-
+                //TODO: Temp Hack. Fix this when login page is ready
+                App.EmployeeId = employee.Id;
                 var items = await Repo.GetOutstandingChargesForEmployeeAsync(employee.Id);
+                Items.ReplaceRange(items);
+
                 var sorted = from item in Items
                              orderby item.ExpenseDate descending
                              group item by item.ExpenseDate.ToString("MMMM") into itemGroup
                              select new Grouping<string, Charge>(itemGroup.Key, itemGroup);
                 ItemsGrouped.ReplaceRange(sorted);
 
-                Items.ReplaceRange(items);
 
                 OnPropertyChanged("TotalAmount");
             }

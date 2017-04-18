@@ -3,30 +3,44 @@
 using MyExpenses.Models;
 
 using Xamarin.Forms;
+using MyExpenses.ViewModels;
+using Expenses.WPF.ViewModels;
+using Expenses.WPF.Services;
 
 namespace MyExpenses.Views
 {
 	public partial class ExpenseDetailPage : ContentPage
 	{
-		public Item Item { get; set; }
+        public ChargeViewModel ViewModel {
+            get { return (ChargeViewModel)BindingContext; }
+            set { BindingContext = value; }
+        }
 
 		public ExpenseDetailPage()
 		{
 			InitializeComponent();
 
-			Item = new Item
-			{
-				Text = "Item name",
-				Description = "This is a nice description"
-			};
 
-			BindingContext = this;
-		}
 
-		async void Save_Clicked(object sender, EventArgs e)
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DependencyService.Get<NavigationService>().ShowChargesRequested += Save_Clicked;
+
+        }
+
+        protected override void OnDisappearing()
+        {
+            DependencyService.Get<NavigationService>().ShowChargesRequested -= Save_Clicked;
+
+            base.OnDisappearing();
+        }
+        async void Save_Clicked(object sender, EventArgs e)
 		{
-			MessagingCenter.Send(this, "AddItem", Item);
-			await Navigation.PopToRootAsync();
+			//MessagingCenter.Send(this, "AddItem", Item);
+			await Navigation?.PopToRootAsync();
 		}
 	}
 }

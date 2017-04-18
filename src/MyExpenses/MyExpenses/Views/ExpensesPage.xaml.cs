@@ -22,19 +22,23 @@ namespace MyExpenses.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExpensesPage : ContentPage
     {
+        bool refreshRequired = false;
 
         ExpensesViewModel viewModel;
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
+            if (viewModel.Items.Count == 0 || refreshRequired)
+            {
                 viewModel.RefreshDataCommand.Execute(null);
+                refreshRequired = false;
+            }
         }
 
         public ExpensesPage()
         {
-			InitializeComponent ();
+            InitializeComponent();
             BindingContext = viewModel = new ExpensesViewModel();
         }
 
@@ -46,15 +50,35 @@ namespace MyExpenses.Views
             if (e.SelectedItem == null)
                 return;
 
-            await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
+            await Navigation?.PushAsync(new ExpenseDetailPage
+            {
+                ViewModel =
+                new ChargeViewModel(e.SelectedItem as Charge,
+                   DependencyService.Get<IServiceFactory>())
+            }, true);
+            //pushing into detail page hence refresh is required when back
+            refreshRequired = true;
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
 
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            Navigation?.PushAsync(new ExpenseDetailPage(), true);
+           await Navigation?.PushAsync(new ExpenseDetailPage
+            {
+                ViewModel =
+                new ChargeViewModel(new Charge()
+                {
+                    Id = null,
+                    ExpenseReportId = null,
+                    EmployeeId = App.EmployeeId,
+                    ExpenseDate = DateTime.Today,
+                },
+                   DependencyService.Get<IServiceFactory>())
+            }, true);
+            //pushing into detail page hence refresh is required when back
+            refreshRequired = true;
         }
     }
 

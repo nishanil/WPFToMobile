@@ -42,6 +42,7 @@ namespace MyExpenses.Views
             var dataManager = DependencyService.Get<IDataManager>();
             await dataManager.Init();
             await dataManager.SyncAll();
+
         }
     }
 }
