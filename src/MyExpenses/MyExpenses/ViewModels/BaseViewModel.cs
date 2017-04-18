@@ -3,17 +3,14 @@ using MyExpenses.Models;
 using MyExpenses.Services;
 using MyExpenses.DataStores;
 using Xamarin.Forms;
+using Expenses.WPF.ViewModels;
 
 namespace MyExpenses.ViewModels
 {
 	public class BaseViewModel : ObservableObject
 	{
-		/// <summary>
-		/// Get the azure service instance
-		/// </summary>
-		public IDataStore<ExpenseReport> DataStore => DependencyService.Get<ExpenseReportDataStore>();
 
-		bool isBusy = false;
+        bool isBusy = false;
 		public bool IsBusy
 		{
 			get { return isBusy; }

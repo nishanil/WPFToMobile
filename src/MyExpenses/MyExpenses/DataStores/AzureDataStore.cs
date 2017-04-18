@@ -88,7 +88,8 @@ namespace MyExpenses.DataStores
 			}
 			try
 			{
-				await itemsTable.PullAsync($"all{typeof(Item).Name}", itemsTable.CreateQuery());
+                //TODO: Query on logged in Employee Id
+				await itemsTable.PullAsync($"all{typeof(T).Name}", itemsTable.CreateQuery());
 			}
 			catch (Exception ex)
 			{

@@ -4,20 +4,21 @@ using System.Text;
 
 namespace MyExpenses.Models
 {
+    public enum Category
+    {
+        Meal,
+        Taxi,
+        Flight,
+        Hotel,
+        Other
+    }
+
     public class Charge : BaseDataObject
     {
 
         //public int ChargeId { get; set; }
 
-        public enum Category
-        {
-            Meal,
-            Taxi,
-            Flight,
-            Hotel,
-            Other
-        }
-
+  
         public Category ChargeCategory { get; set; }
 
 

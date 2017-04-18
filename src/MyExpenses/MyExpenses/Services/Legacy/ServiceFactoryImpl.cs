@@ -14,7 +14,7 @@ namespace Expenses.WPF.Services
         {
             get 
             { 
-                return DependencyService.Get<CurrentIdentityService>(); 
+                return DependencyService.Get<ICurrentIdentityService>(); 
             }
         }
 

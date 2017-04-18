@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:MyExpenses.Converters;assembly=MyExpenses"
              x:Class="MyExpenses.Views.ExpensesPage"
              Title="Outstanding Expenses">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            
+            <local:EnumToImageConverter x:Key="EnumToImageConverter"/>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
@@ -29,19 +37,19 @@
             <StackLayout Grid.Row="0"
                          Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand"
-                         BackgroundColor="White">
+                         VerticalOptions="Center"
+                         >
                <Label Text="Total Outstanding: "
-                      HorizontalTextAlignment="Start"
-                      HorizontalOptions="FillAndExpand"
-                      TextColor="Black"/>
-               <Label Text="$250"
-                      HorizontalTextAlignment="Center"
-                      HorizontalOptions="FillAndExpand"
+                      HorizontalTextAlignment="Start"/>
+                
+                    <Label Text="{Binding TotalAmount}"
+                      HorizontalTextAlignment="End"
+                           HorizontalOptions="EndAndExpand"
+                           VerticalOptions="Center"
                       TextColor="#81c784"
-                      FontSize="Large"
-                      FontAttributes="Bold"/>
+                      FontSize="Large"/>
             </StackLayout>
-                <StackLayout Grid.Row="1"
+                <!--<StackLayout Grid.Row="1"
                          Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand"
                          BackgroundColor="White">
@@ -55,7 +63,7 @@
                       TextColor="#81c784"
                       FontSize="Micro"
                       FontAttributes="Bold"/>
-                </StackLayout>
+                </StackLayout>-->
             </Grid>
         </ListView.Header>
         <!--Built in Cells-->
@@ -87,23 +95,23 @@
                                Grid.Column="0" 
                                Grid.Row="0"
                                Grid.RowSpan="2"
-                               Source="Restaurant.png" 
+                               Source="{Binding ChargeCategory, Converter={StaticResource EnumToImageConverter}}" 
                                HeightRequest="40" 
                                WidthRequest="40"/>
                         <Label HorizontalOptions="Start"
                                Grid.Column="1" 
                                Grid.Row="0"
-                               Text="{Binding Text}" 
+                               Text="{Binding Description}" 
                                Style="{DynamicResource ListItemTextStyle}" />
                         <Label HorizontalOptions="Start"
                                Grid.Column="1" 
                                Grid.Row="1"
-                               Text="{Binding Detail}" 
+                               Text="{Binding Merchant}" 
                                Style="{DynamicResource ListItemDetailTextStyle}"/>
                         <Label Grid.Column="2" 
                                Grid.Row="0"
                                Grid.RowSpan="1"
-                               Text="$250"
+                               Text="{Binding TransactionAmount, StringFormat='{0:C}'}"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
                                HorizontalOptions="FillAndExpand"
@@ -122,7 +130,7 @@
       </DataTemplate>
     </ListView.ItemTemplate>
     
-        <ListView.Footer>
+        <!--<ListView.Footer>
             <StackLayout Padding="10"
                    Orientation="Horizontal"
                    HorizontalOptions="FillAndExpand"
@@ -133,6 +141,6 @@
                TextColor="Black"
                FontAttributes="Bold"/>
             </StackLayout>
-        </ListView.Footer>
+        </ListView.Footer>-->
     </ListView>
 </ContentPage>

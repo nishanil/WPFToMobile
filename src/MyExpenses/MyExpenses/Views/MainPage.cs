@@ -1,4 +1,6 @@
-﻿using MyExpenses.DataStores;
+﻿using Expenses.WPF.Services;
+using MyExpenses.DataStores;
+using MyExpenses.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,12 +34,14 @@ namespace MyExpenses.Views
             });
 
         }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            await DependencyService.Get<IDataManager>().Init();
-
+            var dataManager = DependencyService.Get<IDataManager>();
+            await dataManager.Init();
+            await dataManager.SyncAll();
         }
     }
 }

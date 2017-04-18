@@ -21,11 +21,11 @@ namespace MyExpenses.ViewModels
 			Items = new ObservableRangeCollection<ExpenseReport>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-			MessagingCenter.Subscribe<ExpenseDetailPage, ExpenseReport>(this, "AddItem", async (obj, item) =>
+			MessagingCenter.Subscribe<ExpenseDetailPage, ExpenseReport>(this, "AddItem",  (obj, item) =>
 			{
 				var _item = item as ExpenseReport;
 				Items.Add(_item);
-				await DataStore.AddItemAsync(_item);
+				//await DataStore.AddItemAsync(_item);
 			});
 		}
 
@@ -39,8 +39,8 @@ namespace MyExpenses.ViewModels
 			try
 			{
 				Items.Clear();
-				var items = await DataStore.GetItemsAsync(true);
-				Items.ReplaceRange(items);
+				//var items = await DataStore.GetItemsAsync(true);
+				//Items.ReplaceRange(items);
 			}
 			catch (Exception ex)
 			{

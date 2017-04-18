@@ -5,11 +5,24 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Expenses.WPF.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private static MainWindowViewModel mainWindowViewModel;
+
+        public static MainWindowViewModel Instance
+        {
+            get {
+                if (mainWindowViewModel == null)
+                    mainWindowViewModel = new MainWindowViewModel(DependencyService.Get<IServiceFactory>());
+                return mainWindowViewModel;
+
+            }
+        }
+
         private IServiceFactory _serviceFactory;
         private IViewService _viewService;
         private INavigationService _navigationService;
