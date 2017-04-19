@@ -22,14 +22,14 @@ namespace MyExpenses.Views
                 Title = "Reports",
                 Icon = Device.OnPlatform("Chart.png", null, null)
             });
-            Children.Add(new NavigationPage(new AboutPage())
+            Children.Add(new NavigationPage(new SettingsPage())
             {
                 Title = "Settings",
                 Icon = Device.OnPlatform("Settings.png", null, null)
             });
             Children.Add(new NavigationPage(new AboutPage())
             {
-                Title = "Profile",
+                Title = "About",
                 Icon = Device.OnPlatform("Person.png", null, null)
             });
 

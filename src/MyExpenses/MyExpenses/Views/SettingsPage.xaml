@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyExpenses.Views.SettingsPage" Title="Settings">
+    <ContentPage.Content>
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="Offline Data" >
+                    <TextCell Command="{Binding SyncDataCommand}" Text="Sync Now" Detail="Synchronizes data with Azure"  />
+                    <SwitchCell Text="Enabled" On="True" />
+                     
+                </TableSection>
+                <TableSection Title="Sample Data">
+                    <TextCell Text="Reset Data" Detail="Resets Sample Data on Server" />
+                    
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

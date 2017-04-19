@@ -55,7 +55,7 @@
                             />
                 </StackPanel>
                 <ScrollViewer Grid.Row="1">
-                    <vv:ExpenseReportView IsEnabled="{Binding CanSave}" />
+                    <vv:ExpenseReportView IsEnabled="{Binding CanSave}" Loaded="ExpenseReportView_Loaded" />
                 </ScrollViewer>
             </Grid>
         </Grid>
