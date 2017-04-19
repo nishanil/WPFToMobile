@@ -97,8 +97,7 @@ namespace Expenses.WPF.ViewModels
 
         public async Task LoadChargesAsync(string expenseReportId)
         {
-            //TODO: Verify this
-            if (expenseReportId != System.Guid.Empty.ToString())
+            if (expenseReportId != null)
             {
                 await this._viewService.ExecuteBusyActionAsync(
                     async () =>
@@ -106,6 +105,7 @@ namespace Expenses.WPF.ViewModels
                         // load charges for particular report Id
                         var reportCharges = await this._repositoryService
                             .GetChargesForExpenseReportAsync(expenseReportId);
+                       
                         LoadChargesHelper(reportCharges);
                     });
             }

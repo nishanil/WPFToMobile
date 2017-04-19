@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using System.Windows.Input;
 
 namespace Expenses.WPF.ViewModels
 {
@@ -58,6 +59,31 @@ namespace Expenses.WPF.ViewModels
             {
                 handler(this, new PropertyChangedEventArgs(property));
             }
+        }
+
+
+        private string title;
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; this.NotifyOfPropertyChange(() => this.Title); }
+        }
+
+        private bool isBusy;
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { isBusy = value; this.NotifyOfPropertyChange(() => this.IsBusy); }
+        }
+
+
+        private ICommand refreshDataCommand;
+
+        public ICommand RefreshDataCommand {
+            get { return refreshDataCommand; }
+            set { refreshDataCommand = value; this.NotifyOfPropertyChange(() => this.RefreshDataCommand); }
         }
 
     }

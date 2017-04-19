@@ -9,14 +9,14 @@ using Expenses.WPF.Services;
 
 namespace MyExpenses.Views
 {
-	public partial class ExpenseDetailPage : ContentPage
+	public partial class ChargeDetailPage : ContentPage
 	{
         public ChargeViewModel ViewModel {
             get { return (ChargeViewModel)BindingContext; }
             set { BindingContext = value; }
         }
 
-		public ExpenseDetailPage()
+		public ChargeDetailPage()
 		{
 			InitializeComponent();
 

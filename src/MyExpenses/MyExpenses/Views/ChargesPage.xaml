@@ -2,15 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:MyExpenses;assembly=MyExpenses"
-             x:Class="MyExpenses.Views.ExpensesPage"
+             x:Class="MyExpenses.Views.ChargesPage"
              Title="{Binding Title}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            
-            <local:EnumToImageConverter x:Key="EnumToImageConverter"/>
 
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>

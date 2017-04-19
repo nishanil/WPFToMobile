@@ -2,7 +2,7 @@
 
 namespace Expenses.WPF.ViewModels
 {
-    class ExpenseReportChargesViewModel : ChargesViewModel
+    public class ExpenseReportChargesViewModel : ChargesViewModel
     {
         public ExpenseReportChargesViewModel(IServiceFactory serviceFactory)
             : base(serviceFactory)

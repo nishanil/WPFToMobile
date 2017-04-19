@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyExpenses.Views.ExpenseReportDetailPage"
+             Title="Detail">
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+
+            <local:EnumToImageConverter x:Key="EnumToImageConverter"/>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" />
+        <ToolbarItem Text="Submit" />
+    </ContentPage.ToolbarItems>
+    
+    <ListView ItemsSource="{Binding AssociatedCharges.Charges}"
+            ItemTapped="Handle_ItemTapped"
+            ItemSelected="Handle_ItemSelected"
+            HasUnevenRows="true"
+            CachingStrategy="RecycleElement"
+           >
+    <ListView.Header>
+            <Grid ColumnSpacing="0" RowSpacing="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+                <StackLayout Padding="10">
+                    <Label Text="Employee Name" FontSize="Micro"  
+                          />
+                    <Label Text="{Binding ExpenseReport.EmployeeName}"
+                       FontSize="Micro"/>
+                    
+                    <Label Text="Cost Center"
+                       FontSize="Micro"/>
+                    <Label Text="{Binding ExpenseReport.CostCenter}" FontSize="Micro"  />
+
+                    <Label Text="Notes"
+                       FontSize="Micro"/>
+                    <Label Text="{Binding ExpenseReport.Notes}" FontSize="Micro"  
+                          />
+                    <Label Text="Status" FontSize="Micro"  
+                          />
+                    <Label Text="{Binding ExpenseReport.Status}"
+                       TextColor="#f06292"
+                       FontSize="Micro"/>
+                    <Label Text="Date" FontSize="Micro"  
+                          />
+                    <Label Text="{Binding ExpenseReport.DisplayDate, StringFormat='{0:ddd d MMM}'}"
+                       FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout 
+                    Grid.Column="1"
+                         HorizontalOptions="EndAndExpand" Padding="10">
+                    <Label Text="Approver" FontSize="Micro"  
+                          />
+                    <Label Text="{Binding ExpenseReport.Approver}"
+                       FontSize="Micro"/>
+                    
+                    <Label Text="Submitted Date" FontSize="Micro"  
+                          />
+                    <Label Text="{Binding ExpenseReport.DateSubmitted, StringFormat='{0:ddd d MMM}'}"
+                       FontSize="Micro"/>
+
+                    <Label Text="Owed to Emp" FontSize="Micro"   />
+                    <Label Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
+                      TextColor="#f06292"
+                      FontSize="Micro"
+                      />
+                    <Label Text="Owed to CC" FontSize="Micro"/>
+                    <Label Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
+                      TextColor="#f06292"
+                      FontSize="Micro"
+                     />
+                    <Label Text="Total Amount" FontSize="Micro"/>
+                    <Label Text="{Binding ExpenseReport.Amount, StringFormat='{0:C}'}"
+                      TextColor="#81c784"
+                      FontSize="Large"
+                      FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Padding="20" Grid.Row="1" Grid.ColumnSpan="2" >
+                    
+                <Button TextColor="White" BackgroundColor="#f06292"
+                        Text="Add Expenses" Clicked="Button_Clicked"/>
+
+                </StackLayout>
+            </Grid>
+
+    </ListView.Header>
+    <!--Built in Cells-->
+    <ListView.ItemTemplate>
+      <DataTemplate>
+                <ViewCell>
+                    <Grid RowSpacing="1" Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Grid.Column="0" 
+                               Grid.Row="0"
+                               Grid.RowSpan="2"
+                               Source="{Binding ChargeCategory, Converter={StaticResource EnumToImageConverter}}" 
+                               HeightRequest="40" 
+                               WidthRequest="40"/>
+                        <Label HorizontalOptions="Start"
+                               Grid.Column="1" 
+                               Grid.Row="0"
+                               TextColor="#f06292"
+                               Text="{Binding Description}" 
+                               Style="{DynamicResource ListItemTextStyle}" />
+                        <Label HorizontalOptions="Start"
+                               Grid.Column="1" 
+                               Grid.Row="1"
+                               Text="{Binding Merchant}" 
+                               Style="{DynamicResource ListItemDetailTextStyle}"/>
+                        <Label Grid.Column="2" 
+                               Grid.Row="0"
+                               Grid.RowSpan="1"
+                               Text="{Binding TransactionAmount, StringFormat='{0:C}'}"
+                               HorizontalTextAlignment="End"
+                               VerticalTextAlignment="Center"
+                               HorizontalOptions="EndAndExpand"
+                               VerticalOptions="FillAndExpand"
+                               TextColor="#81c784"
+                               FontSize="Medium"
+                               />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+    </ListView.ItemTemplate>
+    
+    <!--Custom View Cells-->
+    <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->
+    <ListView.Footer>
+      <StackLayout Padding="10"
+                   Orientation="Horizontal">
+                <Button TextColor="White" 
+                        BackgroundColor="#f06292"
+                        Text="Submit Report"/>
+            </StackLayout>
+    </ListView.Footer>
+  </ListView>
+</ContentPage>

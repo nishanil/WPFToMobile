@@ -20,7 +20,7 @@ using Xamarin.Forms.Xaml;
 namespace MyExpenses.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ExpensesPage : ContentPage
+    public partial class ChargesPage : ContentPage
     {
         bool refreshRequired = false;
 
@@ -38,7 +38,7 @@ namespace MyExpenses.Views
 
        
 
-        public ExpensesPage()
+        public ChargesPage()
         {
             InitializeComponent();
             BindingContext = viewModel = new ExpensesViewModel();
@@ -52,7 +52,7 @@ namespace MyExpenses.Views
             if (e.SelectedItem == null)
                 return;
 
-            await Navigation?.PushAsync(new ExpenseDetailPage
+            await Navigation?.PushAsync(new ChargeDetailPage
             {
                 ViewModel =
                 new ChargeViewModel(e.SelectedItem as Charge,
@@ -67,7 +67,7 @@ namespace MyExpenses.Views
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-           await Navigation?.PushAsync(new ExpenseDetailPage
+           await Navigation?.PushAsync(new ChargeDetailPage
             {
                 ViewModel =
                 new ChargeViewModel(new Charge()

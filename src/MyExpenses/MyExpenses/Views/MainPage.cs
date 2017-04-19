@@ -12,12 +12,12 @@ namespace MyExpenses.Views
     {
         public MainPage()
         {
-            Children.Add(new NavigationPage(new ExpensesPage())
+            Children.Add(new NavigationPage(new ChargesPage())
             {
                 Title = "Expenses",
                 Icon = Device.OnPlatform("CreditCard.png", null, null)
             });
-            Children.Add(new NavigationPage(new ReportsPage())
+            Children.Add(new NavigationPage(new ExpenseReportPage())
             {
                 Title = "Reports",
                 Icon = Device.OnPlatform("Chart.png", null, null)

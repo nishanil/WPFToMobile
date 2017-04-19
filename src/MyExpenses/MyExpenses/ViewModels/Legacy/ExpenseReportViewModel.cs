@@ -49,6 +49,22 @@ namespace Expenses.WPF.ViewModels
 
         private string employeeName = string.Empty;
 
+        public string EmployeeName
+        {
+            get
+            { return employeeName; }
+
+            set
+            {
+                if (employeeName == value)
+                { return; }
+
+                employeeName = value;
+                this.Modified = true;
+                this.NotifyOfPropertyChange(() => this.EmployeeName);
+            }
+        }
+
         private decimal amount = 0M;
         public decimal Amount
         {

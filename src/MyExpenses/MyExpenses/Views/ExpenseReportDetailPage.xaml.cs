@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Expenses.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,12 +14,16 @@ using Xamarin.Forms.Xaml;
 namespace MyExpenses.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ReportsDetailPage : ContentPage
+    public partial class ExpenseReportDetailPage : ContentPage
     {
-        public ReportsDetailPage()
+        public EditExpenseReportViewModel ViewModel {
+            get { return (EditExpenseReportViewModel)BindingContext; }
+            set { BindingContext = value; } }
+
+        public ExpenseReportDetailPage()
         {
 			InitializeComponent ();
-            BindingContext = new ReportsDetailPageViewModel();
+            
         }
 
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

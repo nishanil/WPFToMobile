@@ -203,6 +203,22 @@ namespace Expenses.WPF.ViewModels
             }
         }
 
+        private Category _chargeCategory;
+        public Category ChargeCategory
+        {
+            get
+            { return _chargeCategory; }
+
+            set
+            {
+
+
+                _chargeCategory = value;
+                this.Modified = true;
+                this.NotifyOfPropertyChange(() => this.ChargeCategory);
+            }
+        }
+
         #endregion "Properties"
 
         #region "Commands"
@@ -291,6 +307,7 @@ namespace Expenses.WPF.ViewModels
             this._merchant = charge.Merchant;
             this._notes = charge.Notes;
             this._transactionAmount = charge.TransactionAmount;
+            this._chargeCategory = charge.ChargeCategory;
 
             if (charge.Id != null)
             {

@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Expenses.WPF.ViewModels
 {
-    class EditExpenseReportViewModel : ViewModelBase
+    public class EditExpenseReportViewModel : ViewModelBase
     {
         public bool CanSave
         {
@@ -190,12 +190,12 @@ namespace Expenses.WPF.ViewModels
 
         private void UpdateBindableProperties()
         {
-            //TODO: Verify this
-            this.IsNewReport = (this._expenseReportViewModel.ExpenseReportId == Guid.Empty.ToString());
+
+            this.IsNewReport = (this._expenseReportViewModel.ExpenseReportId == null);
             this.CanDelete = (this._expenseReportViewModel.Status == ExpenseReportStatus.Saved) && !this.IsNewReport;
             this.CanSubmit = (this._expenseReportViewModel.Status == ExpenseReportStatus.Saved) && !this.IsNewReport;
-            //TODO: Verify this
-            this.CanSave = (this._expenseReportViewModel.Status == ExpenseReportStatus.Saved) || (this._expenseReportViewModel.ExpenseReportId == Guid.Empty.ToString());
+
+            this.CanSave = (this._expenseReportViewModel.Status == ExpenseReportStatus.Saved) || (this._expenseReportViewModel.ExpenseReportId == null);
             this.CanApprove = this._expenseReportViewModel.Status == ExpenseReportStatus.Submitted;
             this.CanModifyCharges = this.CanSave && !this.IsNewReport;
         }
