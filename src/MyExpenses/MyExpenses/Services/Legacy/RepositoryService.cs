@@ -28,7 +28,7 @@ namespace Expenses.WPF.Services
                 await this._viewService.ShowError(String.Format("Error in API call: {0}", ex.Message));
             }
 
-            return Guid.Empty.ToString();
+            return null;
         }
 
         public async Task<string> CreateNewExpenseReportAsync(ExpenseReport expenseReport)
@@ -45,7 +45,7 @@ namespace Expenses.WPF.Services
                 await this._viewService.ShowError(String.Format("Error in API call: {0}", ex.Message));
             }
 
-            return Guid.Empty.ToString();
+            return null;
         }
 
         public async Task DeleteExpenseReportAsync(string expenseReportId)
@@ -163,7 +163,7 @@ namespace Expenses.WPF.Services
                 //TODO: Verify Guid.Empty may not be required
                 var allCharges = await DependencyService.Get<ChargeDataStore>().GetItemsAsync();
                 var charges = allCharges.Where(i => (i.EmployeeId == employeeId) && 
-                (string.IsNullOrEmpty(i.ExpenseReportId) || i.ExpenseReportId== Guid.Empty.ToString()));
+                (string.IsNullOrEmpty(i.ExpenseReportId)));
                 return charges?.ToArray();
             }
             catch (Exception ex)
@@ -195,7 +195,7 @@ namespace Expenses.WPF.Services
                 await this._viewService.ShowError(String.Format("Error in API call: {0}", ex.Message));
             }
 
-            return Guid.Empty.ToString();
+            return null;
         }
 
         public async Task<string> UpdateExpenseReportAsync(ExpenseReport expenseReport)
@@ -203,7 +203,7 @@ namespace Expenses.WPF.Services
             try
             {
 
-                if (await DependencyService.Get<ExpenseReportDataStore>().AddItemAsync(expenseReport))
+                if (await DependencyService.Get<ExpenseReportDataStore>().UpdateItemAsync(expenseReport))
                 {
                     return expenseReport.Id;
                 }
@@ -214,7 +214,7 @@ namespace Expenses.WPF.Services
                 await this._viewService.ShowError(String.Format("Error in API call: {0}", ex.Message));
             }
 
-            return Guid.Empty.ToString();
+            return null;
         }
     }
     //TODO: Fix this

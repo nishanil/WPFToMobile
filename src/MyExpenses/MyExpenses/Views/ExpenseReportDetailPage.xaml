@@ -11,8 +11,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>-->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" />
-        <ToolbarItem Text="Submit" />
+        <ToolbarItem Text="Save" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     
     <ListView ItemsSource="{Binding AssociatedCharges.Charges}"
@@ -20,6 +19,7 @@
             ItemSelected="Handle_ItemSelected"
             HasUnevenRows="true"
             CachingStrategy="RecycleElement"
+              IsRefreshing="{Binding IsBusy}"
            >
     <ListView.Header>
             <Grid ColumnSpacing="0" RowSpacing="0" >
@@ -37,25 +37,25 @@
                     <Label Text="Employee Name" FontSize="Micro"  
                           />
                     <Label Text="{Binding ExpenseReport.EmployeeName}"
-                       FontSize="Micro"/>
+                       FontSize="Small"/>
                     
                     <Label Text="Cost Center"
                        FontSize="Micro"/>
-                    <Label Text="{Binding ExpenseReport.CostCenter}" FontSize="Micro"  />
+                    <Label Text="{Binding ExpenseReport.CostCenter}" FontSize="Small"  />
 
                     <Label Text="Notes"
                        FontSize="Micro"/>
-                    <Label Text="{Binding ExpenseReport.Notes}" FontSize="Micro"  
+                    <Label Text="{Binding ExpenseReport.Notes}" FontSize="Small"  
                           />
                     <Label Text="Status" FontSize="Micro"  
                           />
                     <Label Text="{Binding ExpenseReport.Status}"
                        TextColor="#f06292"
                        FontSize="Micro"/>
-                    <Label Text="Date" FontSize="Micro"  
+                    <Label Text="Date" FontSize="Small"  
                           />
                     <Label Text="{Binding ExpenseReport.DisplayDate, StringFormat='{0:ddd d MMM}'}"
-                       FontSize="Micro"/>
+                       FontSize="Small"/>
                 </StackLayout>
                 <StackLayout 
                     Grid.Column="1"
@@ -63,33 +63,35 @@
                     <Label Text="Approver" FontSize="Micro"  
                           />
                     <Label Text="{Binding ExpenseReport.Approver}"
-                       FontSize="Micro"/>
+                       FontSize="Small"/>
                     
                     <Label Text="Submitted Date" FontSize="Micro"  
                           />
                     <Label Text="{Binding ExpenseReport.DateSubmitted, StringFormat='{0:ddd d MMM}'}"
-                       FontSize="Micro"/>
+                       FontSize="Small"/>
 
                     <Label Text="Owed to Emp" FontSize="Micro"   />
                     <Label Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
                       TextColor="#f06292"
-                      FontSize="Micro"
+                      FontSize="Small"
                       />
                     <Label Text="Owed to CC" FontSize="Micro"/>
                     <Label Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
                       TextColor="#f06292"
-                      FontSize="Micro"
+                      FontSize="Small"
                      />
                     <Label Text="Total Amount" FontSize="Micro"/>
                     <Label Text="{Binding ExpenseReport.Amount, StringFormat='{0:C}'}"
                       TextColor="#81c784"
-                      FontSize="Large"
+                      FontSize="Small"
                       FontAttributes="Bold"/>
                 </StackLayout>
                 <StackLayout Padding="20" Grid.Row="1" Grid.ColumnSpan="2" >
-                    
-                <Button TextColor="White" BackgroundColor="#f06292"
-                        Text="Add Expenses" Clicked="Button_Clicked"/>
+                    <Label Text="Add Note here"
+                       FontSize="Micro"/>
+                    <Editor Text="{Binding ExpenseReport.Notes}" FontSize="Small" />
+                    <Button TextColor="White" BackgroundColor="#f06292"
+                        Text="Add Expenses" Clicked="Button_Clicked" IsEnabled="{Binding CanSave}"/>
 
                 </StackLayout>
             </Grid>
@@ -99,6 +101,11 @@
     <ListView.ItemTemplate>
       <DataTemplate>
                 <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                                    Text="Delete" IsDestructive="True" />
+                    </ViewCell.ContextActions>
+                    
                     <Grid RowSpacing="1" Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -161,12 +168,11 @@
     </ListView.ItemTemplate>
     -->
     <ListView.Footer>
-      <StackLayout Padding="10"
-                   Orientation="Horizontal">
+            <Grid Padding="20">
                 <Button TextColor="White" 
                         BackgroundColor="#f06292"
-                        Text="Submit Report"/>
-            </StackLayout>
+                        Text="Submit Report" IsEnabled="{Binding CanSubmit}" Clicked="Button_Clicked_1"/>
+            </Grid>
     </ListView.Footer>
   </ListView>
 </ContentPage>

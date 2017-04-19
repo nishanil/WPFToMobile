@@ -77,6 +77,7 @@ namespace Expenses.WPF.ViewModels
                             Merchant = c.Merchant,
                             Notes = c.Notes,
                             TransactionAmount = c.TransactionAmount,
+                            ChargeCategory = c.ChargeCategory
                         });
                     }
                 });

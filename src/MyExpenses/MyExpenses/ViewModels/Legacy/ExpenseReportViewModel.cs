@@ -329,7 +329,7 @@ namespace Expenses.WPF.ViewModels
             this._viewService = serviceFactory.ViewService;
 
             employeeId = this._currentIdentityService.EmployeeId;
-            employeeName = this._currentIdentityService.Name;
+            EmployeeName = this._currentIdentityService.Name;
             approver = this._currentIdentityService.Manager;
             costCenter = 50992;
 
@@ -410,8 +410,8 @@ namespace Expenses.WPF.ViewModels
                         Amount = this.Amount,
                         Approver = this.Approver,
                         CostCenter = this.CostCenter,
-                        DateResolved = this.DateResolved.GetValueOrDefault(),
-                        DateSubmitted = this.DateSubmitted.GetValueOrDefault(),
+                        DateResolved = this.DateResolved,
+                        DateSubmitted = this.DateSubmitted,
                         EmployeeId = this.EmployeeId,
                         Id = this.ExpenseReportId,
                         Notes = this.Notes,

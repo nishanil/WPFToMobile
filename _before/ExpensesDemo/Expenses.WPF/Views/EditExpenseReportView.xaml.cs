@@ -24,5 +24,10 @@ namespace Expenses.WPF.Views
         {
             InitializeComponent();
         }
+
+        private void ExpenseReportView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

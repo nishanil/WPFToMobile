@@ -190,7 +190,7 @@ namespace Expenses.WPF.ViewModels
                 Approver = this.CurrentUserManager,
                 EmployeeId = this.CurrentUserEmployeeId,
                 //TODO: Verify this
-                ExpenseReportId = Guid.Empty.ToString(),
+                ExpenseReportId = null,
             };
 
             await this.ShowExpenseReportAsync(reportVM);

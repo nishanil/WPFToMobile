@@ -39,8 +39,8 @@ namespace MyExpenses.Views
         {
             ExpenseReportViewModel reportVM = new ExpenseReportViewModel(DependencyService.Get<IServiceFactory>())
             {
-                Approver = DependencyService.Get<ICurrentIdentityService>().Manager,
-                EmployeeId = DependencyService.Get<ICurrentIdentityService>().EmployeeId,
+                Approver = "jhill",
+                EmployeeId = App.EmployeeId,
                 ExpenseReportId = null,
             };
 
@@ -64,9 +64,13 @@ namespace MyExpenses.Views
                 async () =>
                 {
                     var serviceFactory = DependencyService.Get<IServiceFactory>();
+                    //TODO:
+                    expenseReportViewModel.EmployeeId = App.EmployeeId;
+
                     var editReportVM = new EditExpenseReportViewModel(serviceFactory)
                     {
-                        ExpenseReport = expenseReportViewModel
+                        ExpenseReport = expenseReportViewModel,
+                        
                     };
                     AddChargesViewModel addChargesVM = new AddChargesViewModel(serviceFactory);
                     await addChargesVM.LoadChargesAsync();

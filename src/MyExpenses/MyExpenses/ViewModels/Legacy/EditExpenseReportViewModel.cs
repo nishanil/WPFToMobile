@@ -166,6 +166,7 @@ namespace Expenses.WPF.ViewModels
                         await this.ViewService.ExecuteBusyActionAsync(
                             async () =>
                             {
+                                
                                 await this._expenseReportViewModel.SaveAsync();
                                 await this._addChargesViewModel.SaveChargesAsync();
                                 await this._expenseReportChargesView.SaveChargesAsync();
@@ -174,8 +175,12 @@ namespace Expenses.WPF.ViewModels
                     },
                     () =>
                     {
-                        return !this.ExpenseReport.HasErrors;
+                        //TODO:
+                        return true;
+                        //return !this.ExpenseReport.HasErrors;
                     });
+
+            this.ViewService.BusyChanged += (o, e) => IsBusy = e.Data;
         }
 
         private void UpdateChargeSums()

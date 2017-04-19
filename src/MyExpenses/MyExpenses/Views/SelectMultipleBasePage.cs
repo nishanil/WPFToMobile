@@ -77,7 +77,7 @@ namespace MyExpenses.Views
                 ItemsSource = WrappedItems,
                 //ItemTemplate = new DataTemplate(typeof(WrappedItemSelectionTemplate)),
                 ItemTemplate = (DataTemplate)Application.Current.Resources["MultiSelectTemplate"] 
-
+               , HasUnevenRows=true,
             };
 
             mainList.ItemSelected += (sender, e) => {
@@ -118,5 +118,7 @@ namespace MyExpenses.Views
         {
             return WrappedItems.Where(item => item.IsSelected).Select(wrappedItem => wrappedItem.Item).ToList();
         }
+
     }
+    
 }
