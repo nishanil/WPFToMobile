@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EnumToImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\InverseBooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomControls\Options.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomControls\TintedImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStores\AzureDataManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStores\ChargeDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataStores\EmployeeDataStore.cs" />

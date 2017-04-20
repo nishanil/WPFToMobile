@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyExpenses.Views.ExpenseReportDetailPage"
+             xmlns:local="clr-namespace:MyExpenses;assembly=MyExpenses"
+             
              Title="Detail">
     <!--<ContentPage.Resources>
         <ResourceDictionary>
@@ -13,7 +15,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Icon="Save.png" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
-    
+
     <ListView ItemsSource="{Binding AssociatedCharges.Charges}"
             ItemTapped="Handle_ItemTapped"
             ItemSelected="Handle_ItemSelected"
@@ -21,91 +23,106 @@
             CachingStrategy="RecycleElement"
               IsRefreshing="{Binding IsBusy}"
            >
-    <ListView.Header>
-            <Grid ColumnSpacing="0" RowSpacing="0" >
+        <ListView.Header>
+
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
 
                 </Grid.RowDefinitions>
+                <Grid ColumnSpacing="0" RowSpacing="0"  Padding="20" 
+                      BackgroundColor="{StaticResource Primary}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackLayout Padding="10">
-                    <Label Text="Employee Name" FontSize="Micro"  
+                <Label Grid.Row="0" Grid.Column="0" TextColor="White" Text="Employee Name" FontSize="Micro"  
                           />
-                    <Label Text="{Binding ExpenseReport.EmployeeName}"
+                <Label  Grid.Row="0" Grid.Column="1" TextColor="White" Text="{Binding ExpenseReport.EmployeeName}"
                        FontSize="Small"/>
-                    
-                    <Label Text="Cost Center"
-                       FontSize="Micro"/>
-                    <Label Text="{Binding ExpenseReport.CostCenter}" FontSize="Small"  />
 
-                    <Label Text="Notes"
+                <Label Grid.Row="1" Grid.Column="0"  TextColor="White" Text="Cost Center"
                        FontSize="Micro"/>
-                    <Label Text="{Binding ExpenseReport.Notes}" FontSize="Small"  
+                <Label Grid.Row="1" Grid.Column="1"  TextColor="White" Text="{Binding ExpenseReport.CostCenter}" FontSize="Small"  />
+
+                <Label Grid.Row="2" Grid.Column="0"  TextColor="White" Text="Notes"
+                       FontSize="Micro"/>
+                <Label Grid.Row="2" Grid.Column="1"  TextColor="White" Text="{Binding ExpenseReport.Notes}" FontSize="Small"  
                           />
-                    <Label Text="Status" FontSize="Micro"  
+                <Label Grid.Row="3" Grid.Column="0"  TextColor="White" Text="Status" FontSize="Micro"  
                           />
-                    <Label Text="{Binding ExpenseReport.Status}"
+                <Label Grid.Row="3" Grid.Column="1"   Text="{Binding ExpenseReport.Status}"
                        TextColor="#f06292"
                        FontSize="Micro"/>
-                    <Label Text="Date" FontSize="Small"  
+                <Label Grid.Row="4" Grid.Column="0"  TextColor="White" Text="Date" FontSize="Small"  
                           />
-                    <Label Text="{Binding ExpenseReport.DisplayDate, StringFormat='{0:ddd d MMM}'}"
-                       FontSize="Small"/>
-                </StackLayout>
-                <StackLayout 
-                    Grid.Column="1"
-                         HorizontalOptions="EndAndExpand" Padding="10">
-                    <Label Text="Approver" FontSize="Micro"  
-                          />
-                    <Label Text="{Binding ExpenseReport.Approver}"
-                       FontSize="Small"/>
-                    
-                    <Label Text="Submitted Date" FontSize="Micro"  
-                          />
-                    <Label Text="{Binding ExpenseReport.DateSubmitted, StringFormat='{0:ddd d MMM}'}"
+                <Label Grid.Row="4" Grid.Column="1"  TextColor="White" Text="{Binding ExpenseReport.DisplayDate, StringFormat='{0:ddd d MMM}'}"
                        FontSize="Small"/>
 
-                    <Label Text="Owed to Emp" FontSize="Micro"   />
-                    <Label Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
+                <Label Grid.Row="5" Grid.Column="0" TextColor="White" Text="Approver" FontSize="Micro"  
+                          />
+                <Label Grid.Row="5" Grid.Column="1" TextColor="White" Text="{Binding ExpenseReport.Approver}"
+                       FontSize="Small"/>
+
+                <Label Grid.Row="6" Grid.Column="0" TextColor="White" Text="Submitted Date" FontSize="Micro"  
+                          />
+                <Label Grid.Row="6" Grid.Column="1" TextColor="White" Text="{Binding ExpenseReport.DateSubmitted, StringFormat='{0:ddd d MMM}'}"
+                       FontSize="Small"/>
+
+                <Label Grid.Row="7" Grid.Column="0" TextColor="White" Text="Owed to Emp" FontSize="Micro"   />
+                <Label Grid.Row="7" Grid.Column="1" Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
                       TextColor="#f06292"
                       FontSize="Small"
                       />
-                    <Label Text="Owed to CC" FontSize="Micro"/>
-                    <Label Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
+                <Label Grid.Row="8" Grid.Column="0" TextColor="White" Text="Owed to CC" FontSize="Micro"/>
+                <Label Grid.Row="8" Grid.Column="1" Text="{Binding ExpenseReport.OwedToEmployee, StringFormat='{0:C}'}"
                       TextColor="#f06292"
                       FontSize="Small"
                      />
-                    <Label Text="Total Amount" FontSize="Micro"/>
-                    <Label Text="{Binding ExpenseReport.Amount, StringFormat='{0:C}'}"
+                <Label Grid.Row="9" Grid.Column="0" TextColor="White" Text="Total Amount" FontSize="Micro"/>
+                <Label Grid.Row="9" Grid.Column="1" Text="{Binding ExpenseReport.Amount, StringFormat='{0:C}'}"
                       TextColor="#81c784"
-                      FontSize="Small"
-                      FontAttributes="Bold"/>
-                </StackLayout>
-                <StackLayout Padding="20" Grid.Row="1" Grid.ColumnSpan="2" >
-                    <Label Text="Add Note here"
-                       FontSize="Micro"/>
-                    <Editor Text="{Binding ExpenseReport.Notes}" FontSize="Small" />
-                    <Button TextColor="White" BackgroundColor="#f06292"
+                      FontSize="Medium"/>
+                    <Label Grid.Row="10" Grid.Column="0" TextColor="White" Text="Add Note: " FontSize="Micro"/>
+                    <Editor TextColor="White" FontAttributes="Italic" BackgroundColor="{StaticResource Primary}" Grid.Row="10" Grid.Column="1"
+                               Text="{Binding ExpenseReport.Notes}" FontSize="Small" />
+                </Grid>
+
+                <Grid  Grid.Row="1"  Padding="20" >
+
+
+
+                <Button 
+                                TextColor="White" BackgroundColor="#f06292"
                         Text="Add Expenses" Clicked="Button_Clicked" IsEnabled="{Binding CanSave}"/>
 
-                </StackLayout>
             </Grid>
-
-    </ListView.Header>
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-      <DataTemplate>
+            </Grid>
+        </ListView.Header>
+        <!--Built in Cells-->
+        <ListView.ItemTemplate>
+            <DataTemplate>
                 <ViewCell>
                     <ViewCell.ContextActions>
                         <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
                                     Text="Delete" IsDestructive="True" />
                     </ViewCell.ContextActions>
-                    
+
                     <Grid RowSpacing="1" Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -117,7 +134,7 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image HorizontalOptions="CenterAndExpand"
+                        <local:TintedImage HorizontalOptions="CenterAndExpand"
                                VerticalOptions="CenterAndExpand"
                                Grid.Column="0" 
                                Grid.Row="0"
@@ -150,10 +167,10 @@
                     </Grid>
                 </ViewCell>
             </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
+        </ListView.ItemTemplate>
+
+        <!--Custom View Cells-->
+        <!--
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
@@ -167,12 +184,12 @@
       </DataTemplate>
     </ListView.ItemTemplate>
     -->
-    <ListView.Footer>
+        <ListView.Footer>
             <Grid Padding="20">
                 <Button TextColor="White" 
                         BackgroundColor="#f06292"
                         Text="Submit Report" IsEnabled="{Binding CanSubmit}" Clicked="Button_Clicked_1"/>
             </Grid>
-    </ListView.Footer>
-  </ListView>
+        </ListView.Footer>
+    </ListView>
 </ContentPage>

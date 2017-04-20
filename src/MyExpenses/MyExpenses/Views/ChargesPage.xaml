@@ -84,7 +84,7 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image HorizontalOptions="CenterAndExpand"
+                        <local:TintedImage HorizontalOptions="CenterAndExpand"
                                VerticalOptions="CenterAndExpand"
                                Grid.Column="0" 
                                Grid.Row="0"

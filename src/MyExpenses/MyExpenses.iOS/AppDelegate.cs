@@ -15,7 +15,7 @@ namespace MyExpenses.iOS
 			global::Xamarin.Forms.Forms.Init();
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 			LoadApplication(new App());
-
+            UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, true);
 			return base.FinishedLaunching(app, options);
 		}
 	}

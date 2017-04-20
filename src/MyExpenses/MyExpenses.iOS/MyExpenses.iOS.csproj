@@ -207,6 +207,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Authentication\SocialAuthenticator.cs" />
     <Compile Include="Renderers\OptionsRenderer.cs" />
+    <Compile Include="Renderers\TintedImageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile_generic.png" />
