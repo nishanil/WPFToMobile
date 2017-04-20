@@ -299,7 +299,21 @@
   <ItemGroup>
     <BundleResource Include="Resources\Taxi%403x.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="Resources\Add%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Add%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Save%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Save%403x.png" />
+  </ItemGroup>
   <Import Project="..\MyExpenses\MyExpenses.projitems" Label="Shared" Condition="Exists('..\MyExpenses\MyExpenses.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

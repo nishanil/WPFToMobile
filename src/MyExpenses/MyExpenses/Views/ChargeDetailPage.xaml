@@ -4,7 +4,7 @@
              x:Class="MyExpenses.Views.ChargeDetailPage"
 		Title="Expense Detail">
 	<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Command="{Binding SaveChargeCommand}"/>
+        <ToolbarItem Text="Save" Icon="Save.png" Command="{Binding SaveChargeCommand}"/>
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
         <ScrollView>

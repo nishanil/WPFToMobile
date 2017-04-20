@@ -6,7 +6,7 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem Text="Add" Icon="Add.png"  Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ListView ItemsSource="{Binding ItemsGrouped}"
             ItemTapped="Handle_ItemTapped"
