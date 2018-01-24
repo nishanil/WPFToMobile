@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MyExpenses", "MyExpenses\MyExpenses\MyExpenses.shproj", "{02693CFE-A903-450E-97B3-C5E2EAB8E498}"
 EndProject
@@ -140,5 +140,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB015A56-AE72-43CB-80F7-52D87F84D3A2}
 	EndGlobalSection
 EndGlobal
