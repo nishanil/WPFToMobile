@@ -20,7 +20,9 @@ namespace MyExpenses
         public static string DefaultEmployeeAlias = "nanil";
         public static string EmployeeId = null;
 
-        public static string AzureMobileAppUrl = "https://myexpenses-si.azurewebsites.net";
+        // public static string AzureMobileAppUrl = "https://myexpenses-si.azurewebsites.net";
+        public static string AzureMobileAppUrl = "https://myexpensesappus.azurewebsites.net";
+
         public static IDictionary<string, string> LoginParameters => null;
 
  
